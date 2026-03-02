@@ -151,7 +151,7 @@ function LeaderboardRow({ entry, index }: { entry: LeaderboardEntry; index: numb
       }}
     >
       <span
-        className="font-orbitron font-black text-3xl w-10 text-center shrink-0"
+        className={`font-orbitron font-black text-center shrink-0 min-w-[3.5rem] ${index < 3 ? 'text-3xl' : 'text-xl'}`}
         style={{ color: index === 0 ? '#f5c842' : index === 1 ? '#c0c0c0' : index === 2 ? '#cd7f32' : 'rgba(255,255,255,0.3)' }}
       >
         {index < 3 ? MEDAL[index] : `#${index + 1}`}
