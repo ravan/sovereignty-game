@@ -9,12 +9,12 @@ interface DisplayModeProps {
 }
 
 const RANKS = [
-  { min: 9500, label: 'SOVEREIGN', color: '#30ba78' },
-  { min: 8000, label: 'MASTER',    color: '#fe7c3f' },
-  { min: 6500, label: 'CHAMPION',  color: '#5fd4a0' },
-  { min: 4500, label: 'GUARDIAN',  color: '#f5c842' },
-  { min: 2500, label: 'DEFENDER',  color: '#fe7c3f' },
-  { min: 0,    label: 'ROOKIE',    color: '#8fba9e' },
+  { min: 9500, label: 'Sovereign', color: '#30ba78' },
+  { min: 8000, label: 'Master',    color: '#ffffff' },
+  { min: 6500, label: 'Champion',  color: '#5fd4a0' },
+  { min: 4500, label: 'Guardian',  color: '#bd3314' },
+  { min: 2500, label: 'Defender',  color: '#ffffff' },
+  { min: 0,    label: 'Rookie',    color: '#8fba9e' },
 ];
 
 function getRank(score: number) {
@@ -27,9 +27,9 @@ const SCOPE_CYCLE: LeaderboardScope[] = ['today', 'week', 'alltime'];
 const SCOPE_DURATION_MS = 4_000;
 
 const SCOPE_META: Record<LeaderboardScope, { title: string; subtitle: string }> = {
-  today:   { title: "TODAY'S CHAMPIONS", subtitle: 'LIVE SCORES' },
-  week:    { title: "THIS WEEK'S BEST",  subtitle: 'WEEKLY RANKINGS' },
-  alltime: { title: 'ALL-TIME LEGENDS',  subtitle: 'HALL OF FAME' },
+  today:   { title: "Today's Champions", subtitle: 'Live Scores' },
+  week:    { title: "This Week's Best",  subtitle: 'Weekly Rankings' },
+  alltime: { title: 'All-Time Legends',  subtitle: 'Hall of Fame' },
 };
 
 const STATEMENTS = [
@@ -123,7 +123,7 @@ function ScopeProgressBar({ scopeIndex }: { scopeIndex: number }) {
           {i === scopeIndex ? (
             <div
               className="h-full rounded-full transition-none"
-              style={{ width: `${progress}%`, background: '#30ba78', boxShadow: '0 0 6px #30ba78' }}
+              style={{ width: `${progress}%`, background: '#30ba78' }}
             />
           ) : i < scopeIndex ? (
             <div className="h-full rounded-full w-full" style={{ background: 'rgba(48,186,120,0.4)' }} />
@@ -152,7 +152,7 @@ function LeaderboardRow({ entry, index }: { entry: LeaderboardEntry; index: numb
     >
       <span
         className={`font-orbitron font-black text-center shrink-0 min-w-[3.5rem] ${index < 3 ? 'text-3xl' : 'text-xl'}`}
-        style={{ color: index === 0 ? '#f5c842' : index === 1 ? '#c0c0c0' : index === 2 ? '#cd7f32' : 'rgba(255,255,255,0.3)' }}
+        style={{ color: index === 0 ? '#30ba78' : index === 1 ? '#c0c0c0' : index === 2 ? '#cd7f32' : 'rgba(255,255,255,0.3)' }}
       >
         {index < 3 ? MEDAL[index] : `#${index + 1}`}
       </span>
@@ -160,7 +160,7 @@ function LeaderboardRow({ entry, index }: { entry: LeaderboardEntry; index: numb
         {entry.player_name}
       </span>
       <span className="font-orbitron text-sm shrink-0" style={{ color: rank.color }}>{rank.label}</span>
-      <span className="font-orbitron font-black text-3xl shrink-0" style={{ color: rank.color, textShadow: `0 0 12px ${rank.color}` }}>
+      <span className="font-orbitron font-black text-3xl shrink-0" style={{ color: rank.color }}>
         {entry.score.toLocaleString()}
       </span>
     </div>
@@ -189,20 +189,19 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         {/* Logo */}
         <div className="text-center">
           <div className="flex justify-center mb-3">
-            <span className="suse-pill" style={{ fontSize: '0.85rem', padding: '4px 14px' }}>POWERED BY SUSE</span>
+            <span className="suse-pill" style={{ fontSize: '0.85rem', padding: '4px 14px' }}>Powered by SUSE</span>
           </div>
           <h1
-            className="glitch-text font-orbitron font-black uppercase tracking-widest"
-            data-text="SOVEREIGNTY"
-            style={{ fontSize: '2.8rem', color: '#30ba78', textShadow: '0 0 20px #30ba78, 0 0 40px #30ba78', lineHeight: 1.1 }}
+            className="font-orbitron font-black tracking-widest"
+            style={{ fontSize: '2.8rem', color: '#30ba78', lineHeight: 1.1 }}
           >
-            SOVEREIGNTY
+            Sovereignty
           </h1>
           <h1
-            className="font-orbitron font-black uppercase tracking-widest mb-5"
-            style={{ fontSize: '2.8rem', color: '#fe7c3f', textShadow: '0 0 20px #fe7c3f', lineHeight: 1.1 }}
+            className="font-orbitron font-black tracking-widest mb-5"
+            style={{ fontSize: '2.8rem', color: '#ffffff', lineHeight: 1.1 }}
           >
-            STRIKE
+            Quiz
           </h1>
           <RotatingStatement />
         </div>
@@ -211,14 +210,14 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         <div className="flex flex-col items-center gap-4">
           <div
             className="p-4 rounded-2xl"
-            style={{ background: '#fff', border: '3px solid #30ba78', boxShadow: '0 0 30px rgba(48,186,120,0.5)' }}
+            style={{ background: '#fff', border: '3px solid #30ba78' }}
           >
             <QRCodeSVG value={gameUrl} size={220} bgColor="#ffffff" fgColor="#0c322c" />
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Wifi className="w-4 h-4" style={{ color: '#30ba78' }} />
-              <span className="font-orbitron text-sm tracking-widest neon-green">SCAN TO PLAY</span>
+              <span className="font-orbitron text-sm tracking-widest neon-green">Scan to Play</span>
             </div>
             <p className="font-orbitron text-xs opacity-40">{gameUrl}</p>
           </div>
@@ -231,9 +230,9 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         {/* Header with scope title */}
         <div>
           <div className="flex items-center gap-3">
-            <Trophy className="w-8 h-8 neon-yellow" />
+            <Trophy className="w-8 h-8" style={{ color: '#bd3314' }} />
             <div>
-              <h2 className="font-orbitron font-black text-3xl" style={{ color: '#f5c842', textShadow: '0 0 15px #f5c842' }}>
+              <h2 className="font-orbitron font-black text-3xl" style={{ color: '#bd3314' }}>
                 {meta.title}
               </h2>
               <p className="font-orbitron text-xs tracking-widest opacity-40">{meta.subtitle}</p>
@@ -246,9 +245,9 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         <div className="flex flex-col gap-2 flex-1 overflow-y-auto">
           {entries.length === 0 ? (
             <div className="flex flex-col items-center justify-center flex-1 gap-4">
-              <Trophy className="w-20 h-20 opacity-10" style={{ color: '#f5c842' }} />
-              <p className="font-orbitron text-xl opacity-30">NO SCORES YET</p>
-              <p className="font-orbitron text-sm opacity-20">SCAN THE QR CODE TO BE FIRST!</p>
+              <Trophy className="w-20 h-20 opacity-10" style={{ color: '#bd3314' }} />
+              <p className="font-orbitron text-xl opacity-30">No Scores Yet</p>
+              <p className="font-orbitron text-sm opacity-20">Scan the QR code to be first!</p>
             </div>
           ) : (
             entries.map((entry, i) => (
@@ -266,11 +265,11 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
               </div>
             </div>
             <div className="text-center">
-              <div className="font-orbitron font-bold text-2xl neon-orange">{entries[0]?.score.toLocaleString() ?? '—'}</div>
+              <div className="font-orbitron font-bold text-2xl" style={{ color: '#ffffff' }}>{entries[0]?.score.toLocaleString() ?? '—'}</div>
               <div className="font-orbitron text-xs opacity-40">TOP SCORE</div>
             </div>
             <div className="text-center">
-              <div className="font-orbitron font-bold text-2xl" style={{ color: '#5fd4a0', textShadow: '0 0 8px #5fd4a0' }}>
+              <div className="font-orbitron font-bold text-2xl" style={{ color: '#5fd4a0' }}>
                 {Math.round(entries.reduce((s, e) => s + e.score, 0) / entries.length).toLocaleString()}
               </div>
               <div className="font-orbitron text-xs opacity-40">AVG SCORE</div>

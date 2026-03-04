@@ -10,13 +10,11 @@ export function TimerRing({ seconds, total, size = 100 }: TimerRingProps) {
   const progress = Math.max(0, seconds / total);
   const offset = circumference * (1 - progress);
 
-  // Color transitions: green → yellow → red
-  const hue = Math.round(progress * 120); // 120=green, 0=red
-  const color = `hsl(${hue}, 100%, 55%)`;
-  const glowColor = `hsla(${hue}, 100%, 55%, 0.6)`;
+  // Green (#30ba78) when healthy, SUSE red (#bd3314) when urgent
+  const isUrgent = seconds <= 5;
+  const color = isUrgent ? '#bd3314' : '#30ba78';
 
   const center = size / 2;
-  const isUrgent = seconds <= 5;
 
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
@@ -38,7 +36,6 @@ export function TimerRing({ seconds, total, size = 100 }: TimerRingProps) {
           style={{
             strokeDasharray: circumference,
             strokeDashoffset: offset,
-            filter: `drop-shadow(0 0 4px ${glowColor})`,
           }}
         />
       </svg>
@@ -48,7 +45,6 @@ export function TimerRing({ seconds, total, size = 100 }: TimerRingProps) {
         style={{
           fontSize: size * 0.28,
           color: color,
-          textShadow: `0 0 10px ${glowColor}`,
           animation: isUrgent ? 'streakPulse 0.5s ease-in-out infinite' : 'none',
         }}
       >

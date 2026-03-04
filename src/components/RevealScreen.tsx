@@ -44,18 +44,18 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
       <div className="text-center">
         {isTimeout ? (
           <div className="flex flex-col items-center gap-2">
-            <Clock className="w-16 h-16" style={{ color: '#f5c842', filter: 'drop-shadow(0 0 12px #f5c842)' }} />
-            <h2 className="font-orbitron font-black text-2xl md:text-4xl neon-yellow">TIME'S UP!</h2>
+            <Clock className="w-16 h-16" style={{ color: '#bd3314' }} />
+            <h2 className="font-orbitron font-black text-2xl md:text-4xl" style={{ color: '#bd3314' }}>Time's Up!</h2>
           </div>
         ) : isCorrect ? (
           <div className="flex flex-col items-center gap-2">
-            <CheckCircle2 className="w-16 h-16" style={{ color: '#30ba78', filter: 'drop-shadow(0 0 12px #30ba78)' }} />
-            <h2 className="font-orbitron font-black text-2xl md:text-4xl neon-green">YOU PICKED THE RIGHT ANSWER!</h2>
+            <CheckCircle2 className="w-16 h-16" style={{ color: '#30ba78' }} />
+            <h2 className="font-orbitron font-black text-2xl md:text-4xl" style={{ color: '#30ba78' }}>You Picked the Right Answer!</h2>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-2">
-            <XCircle className="w-16 h-16" style={{ color: '#e8274b', filter: 'drop-shadow(0 0 12px #e8274b)' }} />
-            <h2 className="font-orbitron font-black text-2xl md:text-4xl neon-red">WRONG!</h2>
+            <XCircle className="w-16 h-16" style={{ color: '#bd3314' }} />
+            <h2 className="font-orbitron font-black text-2xl md:text-4xl" style={{ color: '#bd3314' }}>Wrong!</h2>
           </div>
         )}
       </div>
@@ -72,12 +72,12 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
         <div className="w-full glass rounded-xl neon-border-cyan p-5 space-y-4">
           {chosenText && (
             <div>
-              <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#e8274b' }}>YOU PICKED:</p>
+              <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#bd3314' }}>You Picked:</p>
               <p className="font-orbitron text-sm leading-snug" style={{ color: '#d6f0e5' }}>{chosenText}</p>
             </div>
           )}
           <div>
-            <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#30ba78' }}>THE RIGHT ANSWER IS:</p>
+            <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#30ba78' }}>The Right Answer Is:</p>
             <p className="font-orbitron text-sm leading-snug" style={{ color: '#d6f0e5' }}>{correctText}</p>
           </div>
         </div>
@@ -86,7 +86,7 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
       {/* Score + Next countdown */}
       <div className="flex items-center justify-between w-full">
         <div>
-          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#fe7c3f' }}>SCORE </span>
+          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>SCORE </span>
           <span className="font-orbitron font-bold text-xl neon-green">{score.toLocaleString()}</span>
         </div>
         <button
@@ -94,7 +94,7 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
           className="font-orbitron text-xs px-4 py-2 rounded-lg transition-all"
           style={{ background: 'rgba(48,186,120,0.1)', border: '1px solid rgba(48,186,120,0.4)', color: '#30ba78' }}
         >
-          {questionNumber < totalQuestions ? `NEXT (${countdown})` : `FINISH (${countdown})`}
+          {questionNumber < totalQuestions ? `Next (${countdown})` : `Finish (${countdown})`}
         </button>
       </div>
     </div>

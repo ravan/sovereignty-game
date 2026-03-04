@@ -17,60 +17,60 @@ const RANKS = [
     min: 9500,
     color: '#30ba78',
     variants: [
-      { label: 'SUSE CERTIFIED SOVEREIGN',                       desc: 'Peak digital sovereignty mastery — SUSE would hire you!' },
-      { label: "LINUS TORVALDS' EMERGENCY CONTACT",              desc: "He hasn't called yet, but he could." },
-      { label: "TYPES 'SUDO MAKE ME A SANDWICH' AND IT WORKS",   desc: 'The terminal bends to your will now.' },
-      { label: 'THE CLOUD IS JUST YOUR SERVER FARM',             desc: 'As it should be. As it always should have been.' },
+      { label: 'SUSE Certified Sovereign',                         desc: 'Peak digital sovereignty mastery — SUSE would hire you!' },
+      { label: "Linus Torvalds' Emergency Contact",                desc: "He hasn't called yet, but he could." },
+      { label: "Types 'sudo make me a sandwich' and it works",     desc: 'The terminal bends to your will now.' },
+      { label: 'The Cloud Is Just Your Server Farm',               desc: 'As it should be. As it always should have been.' },
     ],
   },
   {
     min: 8000,
-    color: '#fe7c3f',
+    color: '#ffffff',
     variants: [
-      { label: 'DIGITAL FREEDOM MASTER',                         desc: "Outstanding knowledge. You're ready for any sovereignty pathway." },
-      { label: 'COMPILES KERNEL FOR FUN, NOT PROFIT',            desc: 'Some people do sudoku. You do this.' },
-      { label: 'THEIR DOTFILES HAVE BETTER DOCS THAN MOST STARTUPS', desc: 'Meticulous. Possibly a little intense.' },
-      { label: 'EXPLAINS CONTAINERS TO THEIR GRANDPARENTS',      desc: "They didn't ask, but they're very proud of you." },
+      { label: 'Digital Freedom Master',                           desc: "Outstanding knowledge. You're ready for any sovereignty pathway." },
+      { label: 'Compiles Kernel for Fun, Not Profit',              desc: 'Some people do sudoku. You do this.' },
+      { label: 'Their Dotfiles Have Better Docs Than Most Startups', desc: 'Meticulous. Possibly a little intense.' },
+      { label: 'Explains Containers to Their Grandparents',        desc: "They didn't ask, but they're very proud of you." },
     ],
   },
   {
     min: 6500,
     color: '#5fd4a0',
     variants: [
-      { label: 'OPEN SOURCE GUARDIAN',                           desc: 'Strong advocate for open infrastructure. Keep learning!' },
-      { label: 'HAS OPINIONS ABOUT PACKAGE MANAGERS',            desc: 'Strong ones. Loud ones. Unprompted ones.' },
-      { label: "FRIENDS' UNOFFICIAL IT SUPPORT SINCE FOREVER",   desc: 'You said "it depends on your distro" and they nodded.' },
-      { label: 'NAMED THEIR HOME SERVER AFTER A GREEK GOD',      desc: 'Prometheus runs beautifully, by the way.' },
+      { label: 'Open Source Guardian',                             desc: 'Strong advocate for open infrastructure. Keep learning!' },
+      { label: 'Has Opinions About Package Managers',              desc: 'Strong ones. Loud ones. Unprompted ones.' },
+      { label: "Friends' Unofficial IT Support Since Forever",     desc: 'You said "it depends on your distro" and they nodded.' },
+      { label: 'Named Their Home Server After a Greek God',        desc: 'Prometheus runs beautifully, by the way.' },
     ],
   },
   {
     min: 4500,
-    color: '#f5c842',
+    color: '#bd3314',
     variants: [
-      { label: 'SOVEREIGNTY ADVOCATE',                           desc: 'Solid grasp of the fundamentals. The journey continues.' },
-      { label: 'EXPLAINS OPEN SOURCE AT DINNER PARTIES',         desc: "You've been uninvited to three BBQs. Worth it." },
-      { label: 'LINUX CURIOUS (IT\'S COMPLICATED)',              desc: "The relationship status nobody asked about." },
-      { label: 'CHANGED DEFAULT SEARCH ENGINE. BIG STEP.',       desc: 'Humble beginnings. Revolutionary consequences.' },
+      { label: 'Sovereignty Advocate',                             desc: 'Solid grasp of the fundamentals. The journey continues.' },
+      { label: 'Explains Open Source at Dinner Parties',           desc: "You've been uninvited to three BBQs. Worth it." },
+      { label: "Linux Curious (It's Complicated)",                 desc: "The relationship status nobody asked about." },
+      { label: 'Changed Default Search Engine. Big Step.',         desc: 'Humble beginnings. Revolutionary consequences.' },
     ],
   },
   {
     min: 2500,
-    color: '#fe7c3f',
+    color: '#ffffff',
     variants: [
-      { label: 'DATA DEFENDER',                                  desc: "Learning the path to independence — you've made a start!" },
-      { label: 'SUDO APPRENTICE',                                desc: 'With great power comes great permission errors.' },
-      { label: 'INSTALLS AD BLOCKER, FEELS DANGEROUS',           desc: 'The gateway drug to digital sovereignty.' },
-      { label: 'SKIMS THE PRIVACY POLICY (TOP PARAGRAPH)',       desc: 'Baby steps. Informed-ish steps, but baby steps.' },
+      { label: 'Data Defender',                                    desc: "Learning the path to independence — you've made a start!" },
+      { label: 'Sudo Apprentice',                                  desc: 'With great power comes great permission errors.' },
+      { label: 'Installs Ad Blocker, Feels Dangerous',             desc: 'The gateway drug to digital sovereignty.' },
+      { label: 'Skims the Privacy Policy (Top Paragraph)',         desc: 'Baby steps. Informed-ish steps, but baby steps.' },
     ],
   },
   {
     min: 0,
     color: '#8fba9e',
     variants: [
-      { label: 'SOVEREIGNTY ROOKIE',                             desc: 'Every sovereign journey begins with a single question.' },
-      { label: "CLICKED 'I AGREE' WITHOUT READING",              desc: 'Every sovereign journey begins with a single checkbox.' },
-      { label: 'STILL GOOGLES "WHAT IS LINUX"',                  desc: 'The search history is the first thing we fix.' },
-      { label: 'PROPRIETARY AND PROUD (FOR NOW)',                 desc: 'Blissful ignorance has an expiry date.' },
+      { label: 'Sovereignty Rookie',                               desc: 'Every sovereign journey begins with a single question.' },
+      { label: "Clicked 'I Agree' Without Reading",                desc: 'Every sovereign journey begins with a single checkbox.' },
+      { label: 'Still Googles "What Is Linux"',                    desc: 'The search history is the first thing we fix.' },
+      { label: 'Proprietary and Proud (For Now)',                  desc: 'Blissful ignorance has an expiry date.' },
     ],
   },
 ];
@@ -131,13 +131,13 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       {/* Header */}
       <div className="text-center">
         <div className="flex justify-center mb-2">
-          <span className="suse-pill">POWERED BY SUSE</span>
+          <span className="suse-pill">Powered by SUSE</span>
         </div>
-        <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#fe7c3f', textShadow: '0 0 8px #fe7c3f' }}>
-          GAME OVER
+        <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#ffffff' }}>
+          Game Over
         </p>
-        <h1 className="font-orbitron font-black uppercase" style={{ fontSize: 'clamp(1.8rem, 6vw, 3.5rem)', color: '#30ba78', textShadow: '0 0 20px #30ba78' }}>
-          MISSION COMPLETE
+        <h1 className="font-orbitron font-black" style={{ fontSize: 'clamp(1.8rem, 6vw, 3.5rem)', color: '#30ba78' }}>
+          Mission Complete
         </h1>
       </div>
 
@@ -145,7 +145,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       <div className="text-center">
         <div
           className="font-orbitron font-black"
-          style={{ fontSize: 'clamp(3rem, 12vw, 7rem)', color: rank.color, textShadow: `0 0 20px ${rank.color}, 0 0 40px ${rank.color}`, lineHeight: 1 }}
+          style={{ fontSize: 'clamp(3rem, 12vw, 7rem)', color: rank.color, lineHeight: 1 }}
         >
           <ScoreTicker target={state.score} />
         </div>
@@ -169,13 +169,13 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
           <div className="text-xs opacity-50">CORRECT</div>
         </div>
         <div className="glass rounded-xl p-3 text-center neon-border-purple">
-          <Zap className="w-5 h-5 mx-auto mb-1" style={{ color: '#fe7c3f' }} />
-          <div className="font-orbitron font-bold text-lg neon-orange">{avgTime}s</div>
+          <Zap className="w-5 h-5 mx-auto mb-1" style={{ color: '#ffffff' }} />
+          <div className="font-orbitron font-bold text-lg" style={{ color: '#ffffff' }}>{avgTime}s</div>
           <div className="text-xs opacity-50">AVG TIME</div>
         </div>
-        <div className="glass rounded-xl p-3 text-center" style={{ border: '1px solid rgba(245,200,66,0.3)' }}>
-          <Flame className="w-5 h-5 mx-auto mb-1 neon-yellow" />
-          <div className="font-orbitron font-bold text-lg neon-yellow">{state.maxStreak}</div>
+        <div className="glass rounded-xl p-3 text-center" style={{ border: '1px solid rgba(189,51,20,0.3)' }}>
+          <Flame className="w-5 h-5 mx-auto mb-1" style={{ color: '#bd3314' }} />
+          <div className="font-orbitron font-bold text-lg" style={{ color: '#bd3314' }}>{state.maxStreak}</div>
           <div className="text-xs opacity-50">BEST STREAK</div>
         </div>
       </div>
@@ -183,14 +183,14 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       {/* Breakdown */}
       <div className="w-full glass rounded-xl neon-border-cyan overflow-hidden">
         <div className="px-4 py-2 border-b border-white/10">
-          <span className="font-orbitron text-xs tracking-widest neon-green">ANSWER BREAKDOWN</span>
+          <span className="font-orbitron text-xs tracking-widest neon-green">Answer Breakdown</span>
         </div>
         <div className="divide-y divide-white/5 max-h-52 overflow-y-auto">
           {state.answers.map((ans, i) => {
             const q = questions[ans.questionIndex];
             return (
               <div key={i} className="flex items-center gap-3 px-4 py-2">
-                <span className="font-orbitron text-xs w-4 shrink-0" style={{ color: ans.correct ? '#30ba78' : '#e8274b' }}>
+                <span className="font-orbitron text-xs w-4 shrink-0" style={{ color: ans.correct ? '#30ba78' : '#bd3314' }}>
                   {ans.correct ? '✓' : '✗'}
                 </span>
                 <span className="flex-1 text-xs opacity-70 truncate">{q?.question ?? ''}</span>
@@ -204,11 +204,11 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       </div>
 
       {submitting && (
-        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#fe7c3f' }}>SUBMITTING SCORE...</p>
+        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>Submitting score...</p>
       )}
       {submitted && (
-        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#30ba78', textShadow: '0 0 8px #30ba78' }}>
-          ✓ SCORE RECORDED
+        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#30ba78' }}>
+          ✓ Score Recorded
         </p>
       )}
 
@@ -217,10 +217,10 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         <button
           onClick={onLeaderboard}
           className="flex-1 py-3 rounded-xl font-orbitron text-sm tracking-widest uppercase transition-all"
-          style={{ background: 'rgba(254,124,63,0.12)', border: '1px solid rgba(254,124,63,0.5)', color: '#fe7c3f' }}
+          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.3)', color: '#ffffff' }}
         >
           <Trophy className="inline-block w-4 h-4 mr-1" />
-          RANKINGS
+          Rankings
         </button>
         <button
           onClick={onPlayAgain}
@@ -228,7 +228,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
           style={{ background: 'rgba(48,186,120,0.15)', border: '1px solid rgba(48,186,120,0.5)', color: '#30ba78' }}
         >
           <Zap className="inline-block w-4 h-4 mr-1" />
-          PLAY AGAIN
+          Play Again
         </button>
       </div>
     </div>

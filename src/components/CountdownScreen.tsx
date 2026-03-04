@@ -20,9 +20,9 @@ export function CountdownScreen({ onDone }: CountdownScreenProps) {
     <div className="relative z-10 flex flex-col items-center justify-center min-h-screen gap-6">
       <p
         className="font-orbitron text-sm tracking-widest"
-        style={{ color: '#fe7c3f', textShadow: '0 0 10px #fe7c3f' }}
+        style={{ color: '#ffffff' }}
       >
-        GET READY, AGENT
+        Get Ready
       </p>
 
       <div
@@ -30,21 +30,18 @@ export function CountdownScreen({ onDone }: CountdownScreenProps) {
         className="countdown-num font-orbitron font-black"
         style={{
           fontSize: 'clamp(8rem, 25vw, 16rem)',
-          color: count === 0 ? '#5fd4a0' : '#30ba78',
-          textShadow: count === 0
-            ? '0 0 20px #5fd4a0, 0 0 60px #5fd4a0'
-            : '0 0 20px #30ba78, 0 0 60px #30ba78',
+          color: '#30ba78',
           lineHeight: 1,
         }}
       >
-        {count === 0 ? 'GO!' : count}
+        {count === 0 ? 'Go!' : count}
       </div>
 
       <p
         className="font-orbitron text-xs tracking-widest opacity-60"
         style={{ color: '#30ba78' }}
       >
-        CORRECT + FAST = MAX PTS • STREAK = BONUS
+        Correct + Fast = Max Points · Streak = Bonus
       </p>
     </div>
   );

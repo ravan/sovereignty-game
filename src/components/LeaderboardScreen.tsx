@@ -12,12 +12,12 @@ interface LeaderboardScreenProps {
 const MEDAL = ['🥇', '🥈', '🥉'];
 
 const RANKS = [
-  { min: 9500, label: 'SOVEREIGN', color: '#30ba78' },
-  { min: 8000, label: 'MASTER',    color: '#fe7c3f' },
-  { min: 6500, label: 'CHAMPION',  color: '#5fd4a0' },
-  { min: 4500, label: 'GUARDIAN',  color: '#f5c842' },
-  { min: 2500, label: 'DEFENDER',  color: '#fe7c3f' },
-  { min: 0,    label: 'ROOKIE',    color: '#8fba9e' },
+  { min: 9500, label: 'Sovereign', color: '#30ba78' },
+  { min: 8000, label: 'Master',    color: '#ffffff' },
+  { min: 6500, label: 'Champion',  color: '#5fd4a0' },
+  { min: 4500, label: 'Guardian',  color: '#bd3314' },
+  { min: 2500, label: 'Defender',  color: '#ffffff' },
+  { min: 0,    label: 'Rookie',    color: '#8fba9e' },
 ];
 
 function getRankLabel(score: number) {
@@ -36,7 +36,7 @@ function EntryRow({ entry, index, isPlayer }: { entry: LeaderboardEntry; index: 
     >
       <span
         className="font-orbitron font-bold text-base w-7 text-center shrink-0"
-        style={{ color: index === 0 ? '#f5c842' : index === 1 ? '#c0c0c0' : index === 2 ? '#cd7f32' : 'rgba(255,255,255,0.3)' }}
+        style={{ color: index === 0 ? '#30ba78' : index === 1 ? '#c0c0c0' : index === 2 ? '#cd7f32' : 'rgba(255,255,255,0.3)' }}
       >
         {index < 3 ? MEDAL[index] : `#${index + 1}`}
       </span>
@@ -58,9 +58,9 @@ function EntryRow({ entry, index, isPlayer }: { entry: LeaderboardEntry; index: 
 }
 
 const TABS: { scope: LeaderboardScope; label: string }[] = [
-  { scope: 'today',   label: "TODAY'S HEROES" },
-  { scope: 'week',    label: 'THIS WEEK' },
-  { scope: 'alltime', label: 'ALL TIME' },
+  { scope: 'today',   label: "Today's Heroes" },
+  { scope: 'week',    label: 'This Week' },
+  { scope: 'alltime', label: 'All Time' },
 ];
 
 export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: LeaderboardScreenProps) {
@@ -76,17 +76,17 @@ export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: Lead
       {/* Header */}
       <div className="text-center">
         <div className="flex justify-center mb-2">
-          <span className="suse-pill">POWERED BY SUSE</span>
+          <span className="suse-pill">Powered by SUSE</span>
         </div>
         <div className="flex items-center justify-center gap-3 mb-1">
-          <Trophy className="w-8 h-8 neon-yellow" />
-          <h1 className="font-orbitron font-black text-2xl md:text-4xl" style={{ color: '#f5c842', textShadow: '0 0 20px #f5c842' }}>
-            LEADERBOARD
+          <Trophy className="w-8 h-8" style={{ color: '#bd3314' }} />
+          <h1 className="font-orbitron font-black text-2xl md:text-4xl" style={{ color: '#bd3314' }}>
+            Leaderboard
           </h1>
-          <Trophy className="w-8 h-8 neon-yellow" />
+          <Trophy className="w-8 h-8" style={{ color: '#bd3314' }} />
         </div>
         {playerRank > 0 && (
-          <p className="font-orbitron text-sm neon-green">YOUR RANK: #{playerRank}</p>
+          <p className="font-orbitron text-sm neon-green">Your Rank: #{playerRank}</p>
         )}
       </div>
 
@@ -115,12 +115,12 @@ export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: Lead
       <div className="flex-1 glass rounded-xl neon-border-cyan overflow-hidden">
         {loading && entries.length === 0 ? (
           <div className="flex items-center justify-center h-40">
-            <div className="font-orbitron text-sm animate-pulse neon-green">LOADING...</div>
+            <div className="font-orbitron text-sm animate-pulse neon-green">Loading...</div>
           </div>
         ) : entries.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-40 gap-2">
-            <Trophy className="w-10 h-10 opacity-20" style={{ color: '#f5c842' }} />
-            <p className="font-orbitron text-sm opacity-40">NO SCORES YET — BE THE FIRST!</p>
+            <Trophy className="w-10 h-10 opacity-20" style={{ color: '#bd3314' }} />
+            <p className="font-orbitron text-sm opacity-40">No scores yet — be the first!</p>
           </div>
         ) : (
           <div className="p-3 space-y-2 max-h-96 overflow-y-auto">
@@ -141,14 +141,13 @@ export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: Lead
         onClick={onPlayAgain}
         className="w-full py-4 rounded-xl font-orbitron font-bold text-base tracking-widest uppercase transition-all"
         style={{
-          background: 'linear-gradient(135deg, rgba(48,186,120,0.18), rgba(254,124,63,0.12))',
+          background: 'linear-gradient(135deg, rgba(48,186,120,0.18), rgba(255,255,255,0.06))',
           border: '1px solid rgba(48,186,120,0.5)',
           color: '#30ba78',
-          boxShadow: '0 0 20px rgba(48,186,120,0.2)',
         }}
       >
         <Zap className="inline-block w-4 h-4 mr-2" />
-        PLAY AGAIN
+        Play Again
       </button>
     </div>
   );

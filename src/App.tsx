@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import { ParticleBackground } from './components/ParticleBackground';
 import { IntroScreen } from './components/IntroScreen';
 import { CountdownScreen } from './components/CountdownScreen';
 import { QuestionScreen } from './components/QuestionScreen';
@@ -62,16 +61,16 @@ export default function App() {
 
   if (isDisplayMode()) {
     return (
-      <div className="relative bg-grid scanline" style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-        <ParticleBackground />
+      <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
+  
         <DisplayMode gameUrl={getGameUrl()} />
       </div>
     );
   }
 
   return (
-    <div className="relative bg-grid scanline" style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-      <ParticleBackground />
+    <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
+
 
       {state.phase === 'intro' && (
         <IntroScreen onStart={startGame} />

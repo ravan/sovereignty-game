@@ -7,13 +7,13 @@
 /* ── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
   --green:    #30ba78;
-  --orange:   #fe7c3f;
+  --orange:   #ffffff;
   --light:    #5fd4a0;
-  --red:      #e8274b;
-  --yellow:   #f5c842;
-  --bg:       #061a16;
-  --surface:  #0c322c;
-  --surface2: #0f3d34;
+  --red:      #bd3314;
+  --yellow:   #bd3314;
+  --bg:       #0c322c;
+  --surface:  #0f3d34;
+  --surface2: #123d34;
   --border:   rgba(48, 186, 120, 0.25);
 }
 
@@ -34,110 +34,37 @@ html, body, #root {
 
 /* ── Font utilities ─────────────────────────────────────────────────────────── */
 .font-suse     { font-family: 'SUSE', system-ui, sans-serif; }
-/* keep legacy alias so existing class names still work */
 .font-orbitron { font-family: 'SUSE', system-ui, sans-serif; }
 
-/* ── Neon text effects ─────────────────────────────────────────────────────── */
-.neon-green {
-  color: var(--green);
-  text-shadow: 0 0 8px var(--green), 0 0 18px var(--green);
-}
-.neon-orange {
-  color: var(--orange);
-  text-shadow: 0 0 8px var(--orange), 0 0 18px var(--orange);
-}
-.neon-light {
-  color: var(--light);
-  text-shadow: 0 0 8px var(--light), 0 0 18px var(--light);
-}
-.neon-red {
-  color: var(--red);
-  text-shadow: 0 0 8px var(--red), 0 0 18px var(--red);
-}
-.neon-yellow {
-  color: var(--yellow);
-  text-shadow: 0 0 8px var(--yellow), 0 0 18px var(--yellow);
-}
-/* Legacy aliases used in components */
-.neon-cyan   { color: var(--green);  text-shadow: 0 0 8px var(--green),  0 0 18px var(--green); }
-.neon-purple { color: var(--orange); text-shadow: 0 0 8px var(--orange), 0 0 18px var(--orange); }
+/* ── Color utilities (no glow) ─────────────────────────────────────────────── */
+.neon-green  { color: var(--green); }
+.neon-orange { color: var(--orange); }
+.neon-light  { color: var(--light); }
+.neon-red    { color: var(--red); }
+.neon-yellow { color: var(--yellow); }
+.neon-cyan   { color: var(--green); }
+.neon-purple { color: var(--orange); }
 
-/* ── Neon border effects ───────────────────────────────────────────────────── */
-.neon-border-green {
-  border: 1px solid rgba(48, 186, 120, 0.45);
-  box-shadow: 0 0 12px rgba(48, 186, 120, 0.15), inset 0 0 8px rgba(48, 186, 120, 0.05);
-}
-.neon-border-orange {
-  border: 1px solid rgba(254, 124, 63, 0.45);
-  box-shadow: 0 0 12px rgba(254, 124, 63, 0.15), inset 0 0 8px rgba(254, 124, 63, 0.05);
-}
-/* Legacy aliases */
-.neon-border-cyan   { border: 1px solid rgba(48, 186, 120, 0.45);  box-shadow: 0 0 12px rgba(48, 186, 120, 0.15),  inset 0 0 8px rgba(48, 186, 120, 0.05); }
-.neon-border-purple { border: 1px solid rgba(254, 124, 63, 0.45);  box-shadow: 0 0 12px rgba(254, 124, 63, 0.15),  inset 0 0 8px rgba(254, 124, 63, 0.05); }
+/* ── Border effects ────────────────────────────────────────────────────────── */
+.neon-border-green  { border: 1px solid rgba(48, 186, 120, 0.45); }
+.neon-border-orange { border: 1px solid rgba(255, 255, 255, 0.25); }
+.neon-border-cyan   { border: 1px solid rgba(48, 186, 120, 0.45); }
+.neon-border-purple { border: 1px solid rgba(255, 255, 255, 0.25); }
 
-/* ── Background grid ───────────────────────────────────────────────────────── */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(48, 186, 120, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(48, 186, 120, 0.04) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* ── Particle canvas ───────────────────────────────────────────────────────── */
-#particle-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Scanline overlay ──────────────────────────────────────────────────────── */
+/* ── Scanline overlay (very subtle) ───────────────────────────────────────── */
 .scanline::after {
   content: '';
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 3px;
-  background: linear-gradient(transparent, rgba(48, 186, 120, 0.06), transparent);
-  animation: scanline 8s linear infinite;
+  background: linear-gradient(transparent, rgba(48, 186, 120, 0.04), transparent);
+  animation: scanline 12s linear infinite;
   pointer-events: none;
   z-index: 100;
 }
-
 @keyframes scanline {
   0%   { transform: translateY(-10px); }
   100% { transform: translateY(100vh); }
-}
-
-/* ── Glitch title ──────────────────────────────────────────────────────────── */
-.glitch-text { position: relative; }
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0; left: 0; width: 100%;
-}
-.glitch-text::before {
-  color: var(--orange);
-  animation: glitch-before 3.5s infinite;
-  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
-}
-.glitch-text::after {
-  color: var(--light);
-  animation: glitch-after 3.5s infinite;
-  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
-}
-@keyframes glitch-before {
-  0%, 88%, 100% { transform: translate(0); opacity: 0; }
-  90% { transform: translate(-3px, 1px); opacity: 0.8; }
-  92% { transform: translate(3px, -2px); opacity: 0.8; }
-  94% { transform: translate(-2px, 2px); opacity: 0; }
-}
-@keyframes glitch-after {
-  0%, 88%, 100% { transform: translate(0); opacity: 0; }
-  91% { transform: translate(3px, 2px);   opacity: 0.8; }
-  93% { transform: translate(-3px, -1px); opacity: 0.8; }
-  95% { transform: translate(2px, -2px);  opacity: 0; }
 }
 
 /* ── Timer ring ────────────────────────────────────────────────────────────── */
@@ -170,19 +97,17 @@ html, body, #root {
 }
 .answer-btn:hover:not(:disabled) {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 0 20px rgba(48, 186, 120, 0.35);
+  box-shadow: 0 0 16px rgba(48, 186, 120, 0.2);
 }
 .answer-btn:active:not(:disabled) { transform: scale(0.98); }
 .answer-btn.selected-correct {
   background: rgba(48, 186, 120, 0.2) !important;
   border-color: var(--green) !important;
-  box-shadow: 0 0 20px rgba(48, 186, 120, 0.5) !important;
   animation: correctPulse 0.5s ease-out;
 }
 .answer-btn.selected-wrong {
-  background: rgba(232, 39, 75, 0.2) !important;
+  background: rgba(189, 51, 20, 0.18) !important;
   border-color: var(--red) !important;
-  box-shadow: 0 0 20px rgba(232, 39, 75, 0.4) !important;
   animation: shake 0.4s ease-in-out;
 }
 .answer-btn.is-correct {
@@ -234,12 +159,12 @@ html, body, #root {
 }
 .countdown-num { animation: countNum 0.9s ease-in-out forwards; }
 
-/* ── Rank badge glow ───────────────────────────────────────────────────────── */
-@keyframes rankGlow {
-  0%, 100% { box-shadow: 0 0 10px currentColor, 0 0 20px currentColor; }
-  50% { box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 80px currentColor; }
+/* ── Rank badge pulse ──────────────────────────────────────────────────────── */
+@keyframes rankPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
 }
-.rank-glow { animation: rankGlow 2s ease-in-out infinite; }
+.rank-glow { animation: rankPulse 2s ease-in-out infinite; }
 
 /* ── Input style ────────────────────────────────────────────────────────────── */
 .neon-input {
@@ -247,12 +172,9 @@ html, body, #root {
   border: 1px solid rgba(48, 186, 120, 0.3);
   color: #d6f0e5;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s;
 }
-.neon-input:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 15px rgba(48, 186, 120, 0.3);
-}
+.neon-input:focus { border-color: var(--green); }
 .neon-input::placeholder { color: rgba(214, 240, 229, 0.4); }
 
 /* ── Scrollbar ─────────────────────────────────────────────────────────────── */
@@ -260,9 +182,9 @@ html, body, #root {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
 
-/* ── Utility: glass surface ────────────────────────────────────────────────── */
+/* ── Glass surface ─────────────────────────────────────────────────────────── */
 .glass {
-  background: rgba(12, 50, 44, 0.75);
+  background: rgba(15, 61, 52, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

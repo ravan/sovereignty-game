@@ -16,7 +16,7 @@ interface QuestionScreenProps {
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 const CARD_STYLE = { bg: 'rgba(12,50,44,0.7)', border: 'rgba(48,186,120,0.3)' };
-const LABEL_COLORS = ['#30ba78', '#fe7c3f', '#5fd4a0', '#f5c842'];
+const LABEL_COLORS = ['#30ba78', '#5fd4a0', '#bd3314', '#ffffff'];
 
 export function QuestionScreen({
   question,
@@ -61,15 +61,15 @@ export function QuestionScreen({
       {/* Header bar: question counter + score */}
       <div className="flex items-center justify-between glass rounded-xl px-4 py-2 neon-border-cyan">
         <div className="flex flex-col gap-0.5">
-          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#fe7c3f' }}>QUESTION</span>
+          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>QUESTION</span>
           <span className="font-orbitron font-bold text-lg neon-green">{questionNumber} / {totalQuestions}</span>
         </div>
         <TimerRing seconds={timeLeft} total={GAME_CONFIG.timePerQuestion} size={64} />
         <div className="flex flex-col items-end gap-0.5">
-          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#fe7c3f' }}>SCORE</span>
+          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>SCORE</span>
           <span className="font-orbitron font-bold text-lg neon-green">{score.toLocaleString()}</span>
           {streak >= 2 && (
-            <div className="streak-badge flex items-center gap-1 text-xs font-orbitron" style={{ color: '#f5c842', textShadow: '0 0 8px #f5c842' }}>
+            <div className="streak-badge flex items-center gap-1 text-xs font-orbitron" style={{ color: '#bd3314' }}>
               <Flame className="w-3 h-3" />
               {streak}x STREAK
             </div>
@@ -81,7 +81,7 @@ export function QuestionScreen({
       <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-300"
-          style={{ width: `${progress * 100}%`, background: 'linear-gradient(90deg, #30ba78, #fe7c3f)' }}
+          style={{ width: `${progress * 100}%`, background: 'linear-gradient(90deg, #30ba78, #5fd4a0)' }}
         />
       </div>
 
@@ -90,9 +90,9 @@ export function QuestionScreen({
         <span
           className="inline-block font-orbitron text-xs tracking-widest px-3 py-1 rounded-full"
           style={{
-            background: 'rgba(254,124,63,0.12)',
-            border: '1px solid rgba(254,124,63,0.4)',
-            color: '#fe7c3f',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            color: '#ffffff',
           }}
         >
           {question.categoryIcon} {question.category.toUpperCase()}
