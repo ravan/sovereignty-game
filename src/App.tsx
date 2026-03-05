@@ -32,6 +32,7 @@ export default function App() {
     nextQuestion,
     showLeaderboard,
     resetGame,
+    setPhase,
   } = useGame();
 
   const { isReady: isMarketoReady, submitForm: submitMarketoForm } = useMarketo();
@@ -40,6 +41,10 @@ export default function App() {
   const handleCountdownDone = useCallback(() => {
     beginQuestion();
   }, [beginQuestion]);
+
+  const handleQuit = useCallback(() => {
+    setPhase('final');
+  }, [setPhase]);
 
   // When question reveal auto-advances
   const handleNext = useCallback(() => {
@@ -93,6 +98,7 @@ export default function App() {
           streak={state.streak}
           onAnswer={submitAnswer}
           onTimeout={timeOut}
+          onQuit={handleQuit}
         />
       )}
 

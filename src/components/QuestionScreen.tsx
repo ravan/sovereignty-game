@@ -12,6 +12,7 @@ interface QuestionScreenProps {
   streak: number;
   onAnswer: (index: number) => void;
   onTimeout: () => void;
+  onQuit: () => void;
 }
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
@@ -26,6 +27,7 @@ export function QuestionScreen({
   streak,
   onAnswer,
   onTimeout,
+  onQuit,
 }: QuestionScreenProps) {
   const [timeLeft, setTimeLeft] = useState(GAME_CONFIG.timePerQuestion);
   const [selected, setSelected] = useState<number | null>(null);
@@ -57,19 +59,19 @@ export function QuestionScreen({
   const progress = questionNumber / totalQuestions;
 
   return (
-    <div className="relative z-10 flex flex-col min-h-screen px-4 py-4 gap-3 max-w-4xl mx-auto w-full">
+    <div className="relative z-10 flex flex-col min-h-screen px-4 py-4 gap-3 sm:gap-5 max-w-4xl mx-auto w-full">
       {/* Header bar: question counter + score */}
       <div className="flex items-center justify-between glass rounded-xl px-4 py-2 neon-border-cyan">
         <div className="flex flex-col gap-0.5">
-          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>QUESTION</span>
-          <span className="font-orbitron font-bold text-lg neon-green">{questionNumber} / {totalQuestions}</span>
+          <span className="font-suse text-xs tracking-widest" style={{ color: '#ffffff' }}>QUESTION</span>
+          <span className="font-suse font-bold text-lg neon-green">{questionNumber} / {totalQuestions}</span>
         </div>
         <TimerRing seconds={timeLeft} total={GAME_CONFIG.timePerQuestion} size={64} />
         <div className="flex flex-col items-end gap-0.5">
-          <span className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>SCORE</span>
-          <span className="font-orbitron font-bold text-lg neon-green">{score.toLocaleString()}</span>
+          <span className="font-suse text-xs tracking-widest" style={{ color: '#ffffff' }}>SCORE</span>
+          <span className="font-suse font-bold text-lg neon-green">{score.toLocaleString()}</span>
           {streak >= 2 && (
-            <div className="streak-badge flex items-center gap-1 text-xs font-orbitron" style={{ color: '#bd3314' }}>
+            <div className="streak-badge flex items-center gap-1 text-xs font-suse" style={{ color: '#bd3314' }}>
               <Flame className="w-3 h-3" />
               {streak}x STREAK
             </div>
@@ -85,65 +87,64 @@ export function QuestionScreen({
         />
       </div>
 
-      {/* Category badge */}
-      <div>
-        <span
-          className="inline-block font-orbitron text-xs tracking-widest px-3 py-1 rounded-full"
-          style={{
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            color: '#ffffff',
-          }}
-        >
-          {question.categoryIcon} {question.category.toUpperCase()}
-        </span>
-      </div>
-
-      {/* Question text */}
-      <div className="glass rounded-xl px-5 py-4 neon-border-cyan text-center flex-shrink-0">
+      {/* Question text — fixed 3-line height, lighter weight for hierarchy */}
+      <div className="glass rounded-xl px-5 py-3 neon-border-cyan text-center flex-shrink-0 flex items-center justify-center"
+        style={{ minHeight: 'calc(3 * 1.5em + 1.5rem)', fontSize: 'clamp(1rem, 2.5vw, 1.35rem)' }}
+      >
         <p
-          className="font-orbitron font-semibold leading-snug"
-          style={{ fontSize: 'clamp(1rem, 2.5vw, 1.4rem)', color: '#d6f0e5' }}
+          className="font-suse leading-relaxed"
+          style={{ color: '#a8d5c2', fontWeight: 400, letterSpacing: '0.01em' }}
         >
           {question.question}
         </p>
       </div>
 
-      {/* Answer grid — 1 col on mobile, 2 col on sm+ */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1">
+      {/* Answer grid — WWTBAM hexagonal style: 1 col mobile, 2 col sm+ */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-x-6 sm:gap-y-4 max-w-5xl mx-auto w-full">
         {question.options.map((option, idx) => (
           <button
             key={idx}
             onClick={() => handleAnswer(idx)}
             disabled={selected !== null}
-            className="answer-btn rounded-lg px-3 py-3 text-left flex items-start gap-3 transition-all"
+            className="answer-btn hex-btn px-6 py-2.5 text-left flex items-center gap-3 transition-all"
             style={{
               background: CARD_STYLE.bg,
-              border: `1px solid ${CARD_STYLE.border}`,
-              minHeight: 52,
+              minHeight: 'calc(3 * 1.375em + 1.25rem)',
+              fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
             }}
           >
             <span
-              className="font-orbitron font-black shrink-0 rounded flex items-center justify-center"
+              className="font-suse font-black shrink-0 rounded-md flex items-center justify-center"
               style={{
-                fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
-                width: '1.6em',
-                height: '1.6em',
+                fontSize: 'clamp(0.85rem, 2vw, 1.05rem)',
+                width: '1.8em',
+                height: '1.8em',
                 background: LABEL_COLORS[idx],
                 color: '#061a16',
-                boxShadow: `0 0 8px ${LABEL_COLORS[idx]}`,
+                boxShadow: `0 0 10px ${LABEL_COLORS[idx]}`,
               }}
             >
               {OPTION_LABELS[idx]}
             </span>
             <span
-              className="font-orbitron font-semibold leading-snug"
-              style={{ fontSize: 'clamp(1rem, 2.5vw, 1.4rem)', color: '#d6f0e5' }}
+              className="font-suse font-bold leading-snug"
+              style={{ fontSize: 'clamp(0.85rem, 2vw, 1.1rem)', color: '#ffffff' }}
             >
               {option}
             </span>
           </button>
         ))}
+      </div>
+
+      {/* Quit button */}
+      <div className="flex justify-center mt-auto pb-2">
+        <button
+          onClick={onQuit}
+          className="font-suse text-xs tracking-wider uppercase transition-all opacity-40 hover:opacity-80"
+          style={{ color: '#fe7c3f', letterSpacing: '0.15em' }}
+        >
+          Quit Game
+        </button>
       </div>
     </div>
   );

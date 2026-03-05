@@ -82,37 +82,40 @@ html, body, #root {
   transition: stroke-dashoffset 1s linear, stroke 0.5s;
 }
 
-/* ── Answer buttons ────────────────────────────────────────────────────────── */
+/* ── Answer buttons (WWTBAM hexagonal style) ─────────────────────────────── */
+.hex-btn {
+  clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+}
 .answer-btn {
   position: relative;
   overflow: hidden;
-  transition: transform 0.1s, box-shadow 0.2s;
-  min-height: 52px;
+  transition: transform 0.1s, filter 0.2s;
+  filter: drop-shadow(0 0 1px rgba(48, 186, 120, 0.4));
 }
 .answer-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%);
 }
 .answer-btn:hover:not(:disabled) {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 0 16px rgba(48, 186, 120, 0.2);
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 8px rgba(48, 186, 120, 0.35));
 }
-.answer-btn:active:not(:disabled) { transform: scale(0.98); }
+.answer-btn:active:not(:disabled) { transform: scale(0.97); }
 .answer-btn.selected-correct {
-  background: rgba(48, 186, 120, 0.2) !important;
-  border-color: var(--green) !important;
+  background: rgba(48, 186, 120, 0.3) !important;
+  filter: drop-shadow(0 0 10px rgba(48, 186, 120, 0.5)) !important;
   animation: correctPulse 0.5s ease-out;
 }
 .answer-btn.selected-wrong {
-  background: rgba(189, 51, 20, 0.18) !important;
-  border-color: var(--red) !important;
+  background: rgba(189, 51, 20, 0.25) !important;
+  filter: drop-shadow(0 0 10px rgba(254, 124, 63, 0.5)) !important;
   animation: shake 0.4s ease-in-out;
 }
 .answer-btn.is-correct {
-  background: rgba(48, 186, 120, 0.15) !important;
-  border-color: var(--green) !important;
+  background: rgba(48, 186, 120, 0.2) !important;
+  filter: drop-shadow(0 0 6px rgba(48, 186, 120, 0.4)) !important;
 }
 @keyframes correctPulse {
   0%   { transform: scale(1); }
