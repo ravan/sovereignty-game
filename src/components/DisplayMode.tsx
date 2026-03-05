@@ -167,12 +167,23 @@ function LeaderboardRow({ entry, index }: { entry: LeaderboardEntry; index: numb
   );
 }
 
+function getRefreshIntervalMs(): number {
+  const params = new URLSearchParams(window.location.search);
+  const val = params.get('refresh');
+  if (val) {
+    const secs = Number(val);
+    if (secs > 0) return secs * 1000;
+  }
+  return 15_000;
+}
+
 export function DisplayMode({ gameUrl }: DisplayModeProps) {
   const [scopeIndex, setScopeIndex] = useState(0);
   const scope = SCOPE_CYCLE[scopeIndex];
   const meta = SCOPE_META[scope];
+  const refreshIntervalMs = getRefreshIntervalMs();
 
-  const { entries, loading } = useLeaderboard(scope, true);
+  const { entries, loading, lastUpdated } = useLeaderboard(scope, true, refreshIntervalMs);
 
   // Auto-cycle through scopes
   useEffect(() => {
@@ -238,6 +249,17 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
               <p className="font-orbitron text-xs tracking-widest opacity-40">{meta.subtitle}</p>
             </div>
             {loading && <div className="w-3 h-3 rounded-full border-2 border-t-transparent animate-spin ml-2" style={{ borderColor: '#30ba78', borderTopColor: 'transparent' }} />}
+            {lastUpdated && (
+              <div className="ml-auto flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: '#30ba78' }} />
+                  <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: '#30ba78' }} />
+                </span>
+                <span className="font-orbitron text-xs opacity-40">
+                  {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                </span>
+              </div>
+            )}
           </div>
           <ScopeProgressBar scopeIndex={scopeIndex} />
         </div>
@@ -257,7 +279,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         </div>
 
         {entries.length > 0 && (
-          <div className="flex gap-6 glass rounded-xl px-6 py-3 neon-border-cyan">
+          <div className="flex justify-around glass rounded-xl px-6 py-3 neon-border-cyan">
             <div className="text-center">
               <div className="font-orbitron font-bold text-2xl neon-green">{entries.length}</div>
               <div className="font-orbitron text-xs opacity-40">

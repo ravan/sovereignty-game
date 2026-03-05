@@ -208,28 +208,30 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         </div>
       </div>
 
-      {/* Breakdown */}
-      <div className="w-full glass rounded-xl neon-border-cyan overflow-hidden">
-        <div className="px-4 py-2 border-b border-white/10">
-          <span className="font-orbitron text-xs tracking-widest neon-green">Answer Breakdown</span>
+      {/* Breakdown — only show if there are answers */}
+      {state.answers.length > 0 && (
+        <div className="w-full glass rounded-xl neon-border-cyan overflow-hidden">
+          <div className="px-4 py-2 border-b border-white/10">
+            <span className="font-orbitron text-xs tracking-widest neon-green">Answer Breakdown</span>
+          </div>
+          <div className="divide-y divide-white/5 max-h-52 overflow-y-auto">
+            {state.answers.map((ans, i) => {
+              const q = questions[ans.questionIndex];
+              return (
+                <div key={i} className="flex items-center gap-3 px-4 py-2">
+                  <span className="font-orbitron text-xs w-4 shrink-0" style={{ color: ans.correct ? '#30ba78' : '#bd3314' }}>
+                    {ans.correct ? '✓' : '✗'}
+                  </span>
+                  <span className="flex-1 text-xs opacity-70 truncate">{q?.question ?? ''}</span>
+                  <span className="font-orbitron text-xs shrink-0" style={{ color: ans.correct ? '#30ba78' : '#555' }}>
+                    {ans.points > 0 ? `+${ans.points}` : '0'}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className="divide-y divide-white/5 max-h-52 overflow-y-auto">
-          {state.answers.map((ans, i) => {
-            const q = questions[ans.questionIndex];
-            return (
-              <div key={i} className="flex items-center gap-3 px-4 py-2">
-                <span className="font-orbitron text-xs w-4 shrink-0" style={{ color: ans.correct ? '#30ba78' : '#bd3314' }}>
-                  {ans.correct ? '✓' : '✗'}
-                </span>
-                <span className="flex-1 text-xs opacity-70 truncate">{q?.question ?? ''}</span>
-                <span className="font-orbitron text-xs shrink-0" style={{ color: ans.correct ? '#30ba78' : '#555' }}>
-                  {ans.points > 0 ? `+${ans.points}` : '0'}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      )}
 
       {submitting && (
         <p className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>Submitting score...</p>

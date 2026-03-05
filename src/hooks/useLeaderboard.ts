@@ -4,9 +4,10 @@ import { db, subscribeToLeaderboard } from '../supabase';
 
 export type LeaderboardScope = 'today' | 'week' | 'alltime';
 
-export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = false) {
+export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = false, refreshIntervalMs = 15_000) {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const fetch = useCallback(async () => {
     setLoading(true);
@@ -20,6 +21,7 @@ export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = 
         data = await db.getAllTimeLeaderboard(20);
       }
       setEntries(data);
+      setLastUpdated(new Date());
     } finally {
       setLoading(false);
     }
@@ -32,9 +34,9 @@ export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = 
   // Polling fallback — also catches cases where realtime isn't enabled in Supabase
   useEffect(() => {
     if (!autoRefresh) return;
-    const id = setInterval(fetch, 10_000);
+    const id = setInterval(fetch, refreshIntervalMs);
     return () => clearInterval(id);
-  }, [autoRefresh, fetch]);
+  }, [autoRefresh, fetch, refreshIntervalMs]);
 
   // Real-time subscription: instantly refresh when a new score is inserted
   useEffect(() => {
@@ -43,5 +45,5 @@ export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = 
     return unsub;
   }, [autoRefresh, fetch]);
 
-  return { entries, loading, refresh: fetch };
+  return { entries, loading, lastUpdated, refresh: fetch };
 }

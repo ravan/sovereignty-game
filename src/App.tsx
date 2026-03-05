@@ -11,12 +11,16 @@ import { useMarketo } from './hooks/useMarketo';
 
 function getGameUrl(): string {
   const base = window.location.origin + window.location.pathname;
-  return base.replace(/\?.*$/, '').replace(/\/$/, '');
+  return base.replace(/\?.*$/, '').replace(/\/dashboard\/?$/, '').replace(/\/$/, '');
+}
+
+function isDashboard(): boolean {
+  return window.location.pathname.replace(/\/+$/, '').endsWith('/dashboard');
 }
 
 function isDisplayMode(): boolean {
   const params = new URLSearchParams(window.location.search);
-  return params.has('display');
+  return params.has('display') || isDashboard();
 }
 
 export default function App() {
