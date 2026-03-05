@@ -78,22 +78,28 @@ export const db = {
   isLive: isConfigured && supabase !== null,
 
   async submitScore(entry: Omit<LeaderboardEntry, 'id' | 'played_at' | 'session_date'>): Promise<void> {
-    const record: LeaderboardEntry = {
-      ...entry,
-      played_at: new Date().toISOString(),
-      session_date: todayStr(),
-    };
-
     if (supabase) {
       try {
-        await supabase.from('leaderboard').insert(record);
-        return;
+        const { error } = await supabase.functions.invoke('submit-score', {
+          body: {
+            player_name: entry.player_name,
+            score: entry.score,
+            correct_answers: entry.correct_answers,
+            max_streak: entry.max_streak,
+          },
+        });
+        if (!error) return;
       } catch {
         // fall through to local
       }
     }
 
     // localStorage fallback
+    const record: LeaderboardEntry = {
+      ...entry,
+      played_at: new Date().toISOString(),
+      session_date: todayStr(),
+    };
     const existing = readLocal();
     existing.unshift(record);
     existing.sort((a, b) => b.score - a.score);
