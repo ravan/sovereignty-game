@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { GameState } from '../types';
 import { Question } from '../types';
 import { db } from '../supabase';
-import { Trophy, Target, Zap, Flame } from 'lucide-react';
+import { Trophy, Target, Zap, Flame, MessageSquare } from 'lucide-react';
+import { ContactExpertModal, ContactFormData } from './ContactExpertModal';
+import { MarketoFormData, MARKETO_FORM_ID } from '../hooks/useMarketo';
 
 interface FinalScreenProps {
   state: GameState;
@@ -10,6 +12,8 @@ interface FinalScreenProps {
   correctCount: number;
   onLeaderboard: () => void;
   onPlayAgain: () => void;
+  isMarketoReady: boolean;
+  submitMarketoForm: (data: MarketoFormData) => Promise<boolean>;
 }
 
 const RANKS = [
@@ -97,9 +101,33 @@ function ScoreTicker({ target }: { target: number }) {
   return <>{displayed.toLocaleString()}</>;
 }
 
-export function FinalScreen({ state, questions, correctCount, onLeaderboard, onPlayAgain }: FinalScreenProps) {
+export function FinalScreen({ state, questions, correctCount, onLeaderboard, onPlayAgain, isMarketoReady, submitMarketoForm }: FinalScreenProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactSubmitted, setContactSubmitted] = useState(false);
+
+  const handleContactSubmit = (data: ContactFormData) => {
+    setShowContactModal(false);
+    setContactSubmitted(true);
+
+    if (isMarketoReady) {
+      const marketoData: MarketoFormData = {
+        Email: data.email,
+        FirstName: data.firstName,
+        LastName: data.lastName,
+        Phone: data.phone,
+        Company: data.company,
+        Country: data.country,
+        State: data.state || undefined,
+        optin: data.optin,
+        customCampaignInput: import.meta.env.VITE_MARKETO_CAMPAIGN_TALK_TO_EXPERT || undefined,
+      };
+      submitMarketoForm(marketoData).then((success) => {
+        console.log('[Marketo]', success ? 'submitted' : 'failed');
+      });
+    }
+  };
   const rank = useMemo(() => getRank(state.score), [state.score]);
   const avgTime = state.answers.length
     ? Math.round(state.answers.reduce((sum, a) => sum + a.timeMs, 0) / state.answers.length / 100) / 10
@@ -212,6 +240,26 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         </p>
       )}
 
+      {/* Talk to Expert CTA */}
+      {!contactSubmitted ? (
+        <button
+          onClick={() => setShowContactModal(true)}
+          className="w-full py-3.5 rounded-xl font-orbitron text-sm tracking-widest uppercase transition-all flex items-center justify-center gap-2"
+          style={{
+            background: 'rgba(48,186,120,0.15)',
+            border: '2px solid rgba(48,186,120,0.5)',
+            color: '#30ba78',
+          }}
+        >
+          <MessageSquare className="w-5 h-5" />
+          Talk to an Expert
+        </button>
+      ) : (
+        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#30ba78' }}>
+          ✓ Request Sent
+        </p>
+      )}
+
       {/* Actions */}
       <div className="flex gap-4 w-full">
         <button
@@ -230,6 +278,17 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
           <Zap className="inline-block w-4 h-4 mr-1" />
           Play Again
         </button>
+      </div>
+
+      <ContactExpertModal
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        onSubmit={handleContactSubmit}
+      />
+
+      {/* Hidden Marketo form element */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <form id={`mktoForm_${MARKETO_FORM_ID}`}></form>
       </div>
     </div>
   );

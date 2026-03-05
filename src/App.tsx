@@ -7,6 +7,7 @@ import { FinalScreen } from './components/FinalScreen';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { DisplayMode } from './components/DisplayMode';
 import { useGame } from './hooks/useGame';
+import { useMarketo } from './hooks/useMarketo';
 
 function getGameUrl(): string {
   const base = window.location.origin + window.location.pathname;
@@ -32,6 +33,8 @@ export default function App() {
     showLeaderboard,
     resetGame,
   } = useGame();
+
+  const { isReady: isMarketoReady, submitForm: submitMarketoForm } = useMarketo();
 
   // When countdown ends, begin the first question
   const handleCountdownDone = useCallback(() => {
@@ -112,6 +115,8 @@ export default function App() {
           correctCount={correctCount}
           onLeaderboard={showLeaderboard}
           onPlayAgain={resetGame}
+          isMarketoReady={isMarketoReady}
+          submitMarketoForm={submitMarketoForm}
         />
       )}
 
