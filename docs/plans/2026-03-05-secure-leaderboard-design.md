@@ -32,7 +32,7 @@ Location: `supabase/functions/submit-score/index.ts`
 4. Inserts via `service_role` Supabase client
 5. Returns `{ success: true }` or `{ error: "message" }`
 
-CORS: Allow `sovereignty-strike.justbroke.org` and `ravan.github.io`.
+CORS: Allow `sovereigntyquiz.com` and `ravan.github.io`.
 
 ## Client Change
 
