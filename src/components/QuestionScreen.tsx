@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { Question } from '../types';
 import { GAME_CONFIG } from '../data/questions';
 import { TimerRing } from './TimerRing';
@@ -33,6 +33,19 @@ export function QuestionScreen({
   const [selected, setSelected] = useState<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const shuffledOptions = useMemo(() => {
+    const indices = [0, 1, 2, 3];
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices.map((originalIdx) => ({
+      text: question.options[originalIdx],
+      originalIdx,
+    }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question.id]);
+
   useEffect(() => {
     setTimeLeft(GAME_CONFIG.timePerQuestion);
     setSelected(null);
@@ -53,7 +66,7 @@ export function QuestionScreen({
     if (selected !== null) return;
     clearInterval(intervalRef.current!);
     setSelected(idx);
-    onAnswer(idx);
+    onAnswer(shuffledOptions[idx].originalIdx);
   };
 
   const progress = questionNumber / totalQuestions;
@@ -101,7 +114,7 @@ export function QuestionScreen({
 
       {/* Answer grid — WWTBAM hexagonal style: 1 col mobile, 2 col sm+ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-x-6 sm:gap-y-4 max-w-5xl mx-auto w-full">
-        {question.options.map((option, idx) => (
+        {shuffledOptions.map((opt, idx) => (
           <button
             key={idx}
             onClick={() => handleAnswer(idx)}
@@ -130,7 +143,7 @@ export function QuestionScreen({
               className="font-suse font-bold leading-snug"
               style={{ fontSize: 'clamp(0.85rem, 2vw, 1.1rem)', color: '#ffffff' }}
             >
-              {option}
+              {opt.text}
             </span>
           </button>
         ))}
