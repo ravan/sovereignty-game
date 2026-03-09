@@ -203,13 +203,13 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
             <span className="suse-pill" style={{ fontSize: '0.85rem', padding: '4px 14px' }}>Powered by SUSE</span>
           </div>
           <h1
-            className="font-orbitron font-black tracking-widest"
+            className="font-orbitron font-black "
             style={{ fontSize: '2.8rem', color: '#30ba78', lineHeight: 1.1 }}
           >
             Sovereignty
           </h1>
           <h1
-            className="font-orbitron font-black tracking-widest mb-5"
+            className="font-orbitron font-black   mb-5"
             style={{ fontSize: '2.8rem', color: '#ffffff', lineHeight: 1.1 }}
           >
             Quiz
@@ -228,7 +228,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Wifi className="w-4 h-4" style={{ color: '#30ba78' }} />
-              <span className="font-orbitron text-sm tracking-widest neon-green">Scan to Play</span>
+              <span className="font-orbitron text-sm   neon-green">Scan to Play</span>
             </div>
             <p className="font-orbitron text-xs opacity-40">{gameUrl}</p>
           </div>
@@ -246,7 +246,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
               <h2 className="font-orbitron font-black text-3xl" style={{ color: '#bd3314' }}>
                 {meta.title}
               </h2>
-              <p className="font-orbitron text-xs tracking-widest opacity-40">{meta.subtitle}</p>
+              <p className="font-orbitron text-xs   opacity-40">{meta.subtitle}</p>
             </div>
             {loading && <div className="w-3 h-3 rounded-full border-2 border-t-transparent animate-spin ml-2" style={{ borderColor: '#30ba78', borderTopColor: 'transparent' }} />}
             {lastUpdated && (

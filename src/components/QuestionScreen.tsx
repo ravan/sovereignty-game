@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import { Question } from '../types';
 import { GAME_CONFIG } from '../data/questions';
 import { TimerRing } from './TimerRing';
-import { Flame } from 'lucide-react';
+import { Flame, Italic } from 'lucide-react';
 
 interface QuestionScreenProps {
   question: Question;
@@ -17,7 +17,7 @@ interface QuestionScreenProps {
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 const CARD_STYLE = { bg: 'rgba(12,50,44,0.7)', border: 'rgba(48,186,120,0.3)' };
-const LABEL_COLORS = ['#30ba78', '#5fd4a0', '#bd3314', '#ffffff'];
+const LABEL_COLORS = ['#30ba78', '#30ba78', '#30ba78', '#30ba78'];
 
 export function QuestionScreen({
   question,
@@ -101,12 +101,12 @@ export function QuestionScreen({
       </div>
 
       {/* Question text — fixed 3-line height, lighter weight for hierarchy */}
-      <div className="glass rounded-xl px-5 py-3 neon-border-cyan text-center flex-shrink-0 flex items-center justify-center"
-        style={{ minHeight: 'calc(3 * 1.5em + 1.5rem)', fontSize: 'clamp(1rem, 2.5vw, 1.35rem)' }}
+      <div className="quiz-question glass rounded-xl px-5 py-3 neon-border-cyan text-center flex-shrink-0 flex items-center justify-center"
+        style={{ minHeight: 'calc(3 * 1.5em + 1.5rem)', fontSize: 'clamp(1rem, 2.5vw, 1.35rem)',  }}
       >
         <p
           className="font-suse leading-relaxed"
-          style={{ color: '#a8d5c2', fontWeight: 400, letterSpacing: '0.01em' }}
+          style={{ color: '#fff',  fontWeight: 400,  }}
         >
           {question.question}
         </p>
@@ -133,15 +133,15 @@ export function QuestionScreen({
                 width: '1.8em',
                 height: '1.8em',
                 background: LABEL_COLORS[idx],
-                color: '#061a16',
-                boxShadow: `0 0 10px ${LABEL_COLORS[idx]}`,
+                color: '#0c322c',
+                boxShadow: `0 0 40px ${LABEL_COLORS[idx]}`,
               }}
             >
               {OPTION_LABELS[idx]}
             </span>
             <span
-              className="font-suse font-bold leading-snug"
-              style={{ fontSize: 'clamp(0.85rem, 2vw, 1.1rem)', color: '#ffffff' }}
+              className="font-suse  leading-snug"
+              style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)', color: '#ffffff' }}
             >
               {opt.text}
             </span>

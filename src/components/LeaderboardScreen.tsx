@@ -51,7 +51,7 @@ function EntryRow({ entry, index, isPlayer }: { entry: LeaderboardEntry; index: 
         {entry.score.toLocaleString()}
       </span>
       <span className="text-xs opacity-40 shrink-0 hidden sm:block">
-        {entry.correct_answers ?? '?'}/16
+        {entry.correct_answers ?? '?'}/10
       </span>
     </div>
   );
@@ -96,7 +96,7 @@ export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: Lead
           <button
             key={s}
             onClick={() => setScope(s)}
-            className="flex-1 py-2 rounded-lg font-orbitron text-xs tracking-widest uppercase transition-all"
+            className="flex-1 py-2 rounded-lg font-orbitron text-xs  uppercase transition-all"
             style={{
               background: scope === s ? 'rgba(48,186,120,0.15)' : 'transparent',
               color: scope === s ? '#30ba78' : 'rgba(255,255,255,0.35)',
@@ -139,7 +139,7 @@ export function LeaderboardScreen({ playerScore, playerName, onPlayAgain }: Lead
       {/* Action */}
       <button
         onClick={onPlayAgain}
-        className="w-full py-4 rounded-xl font-orbitron font-bold text-base tracking-widest uppercase transition-all"
+        className="w-full py-4 rounded-xl font-orbitron font-bold text-base  uppercase transition-all"
         style={{
           background: 'linear-gradient(135deg, rgba(48,186,120,0.18), rgba(255,255,255,0.06))',
           border: '1px solid rgba(48,186,120,0.5)',

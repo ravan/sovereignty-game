@@ -11,7 +11,7 @@
   --light:    #5fd4a0;
   --red:      #fe7c3f;
   --yellow:   #fe7c3f;
-  --bg:       #0c322c;
+  --bg:       #061816ff;
   --surface:  #0f3d34;
   --surface2: #123d34;
   --border:   rgba(48, 186, 120, 0.25);
@@ -87,6 +87,7 @@ html, body, #root {
   clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
 }
 .answer-btn {
+  font-weight: 300;
   position: relative;
   overflow: hidden;
   transition: transform 0.1s, filter 0.2s;

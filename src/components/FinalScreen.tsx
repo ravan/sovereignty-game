@@ -161,7 +161,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         <div className="flex justify-center mb-2">
           <span className="suse-pill">Powered by SUSE</span>
         </div>
-        <p className="font-orbitron text-xs tracking-widest mb-1" style={{ color: '#ffffff' }}>
+        <p className="font-orbitron text-xs  mb-1" style={{ color: '#ffffff' }}>
           Game Over
         </p>
         <h1 className="font-orbitron font-black" style={{ fontSize: 'clamp(1.8rem, 6vw, 3.5rem)', color: '#30ba78' }}>
@@ -177,7 +177,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         >
           <ScoreTicker target={state.score} />
         </div>
-        <div className="font-orbitron text-xs tracking-widest mt-1 opacity-50">POINTS</div>
+        <div className="font-orbitron text-xs   mt-1 opacity-50">POINTS</div>
       </div>
 
       {/* Rank badge */}
@@ -185,7 +185,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         className="rank-glow rounded-2xl px-6 py-4 text-center glass"
         style={{ border: `2px solid ${rank.color}`, color: rank.color }}
       >
-        <div className="font-orbitron font-black text-xl md:text-2xl tracking-widest">{rank.label}</div>
+        <div className="font-orbitron font-black text-xl md:text-2xl  ">{rank.label}</div>
         <div className="text-xs mt-1 opacity-80">{rank.desc}</div>
       </div>
 
@@ -212,7 +212,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       {state.answers.length > 0 && (
         <div className="w-full glass rounded-xl neon-border-cyan overflow-hidden">
           <div className="px-4 py-2 border-b border-white/10">
-            <span className="font-orbitron text-xs tracking-widest neon-green">Answer Breakdown</span>
+            <span className="font-orbitron text-xs  neon-green">Answer Breakdown</span>
           </div>
           <div className="divide-y divide-white/5 max-h-52 overflow-y-auto">
             {state.answers.map((ans, i) => {
@@ -234,10 +234,10 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       )}
 
       {submitting && (
-        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#ffffff' }}>Submitting score...</p>
+        <p className="font-orbitron text-xs  " style={{ color: '#ffffff' }}>Submitting score...</p>
       )}
       {submitted && (
-        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#30ba78' }}>
+        <p className="font-orbitron text-xs  " style={{ color: '#30ba78' }}>
           ✓ Score Recorded
         </p>
       )}
@@ -246,7 +246,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       {!contactSubmitted ? (
         <button
           onClick={() => setShowContactModal(true)}
-          className="w-full py-3.5 rounded-xl font-orbitron text-sm tracking-widest uppercase transition-all flex items-center justify-center gap-2"
+          className="w-full py-3.5 rounded-xl font-orbitron text-sm uppercase transition-all flex items-center justify-center gap-2"
           style={{
             background: 'rgba(48,186,120,0.15)',
             border: '2px solid rgba(48,186,120,0.5)',
@@ -266,7 +266,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
       <div className="flex gap-4 w-full">
         <button
           onClick={onLeaderboard}
-          className="flex-1 py-3 rounded-xl font-orbitron text-sm tracking-widest uppercase transition-all"
+          className="flex-1 py-3 rounded-xl font-orbitron text-sm uppercase transition-all"
           style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.3)', color: '#ffffff' }}
         >
           <Trophy className="inline-block w-4 h-4 mr-1" />
@@ -274,7 +274,7 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         </button>
         <button
           onClick={onPlayAgain}
-          className="flex-1 py-3 rounded-xl font-orbitron text-sm tracking-widest uppercase transition-all"
+          className="flex-1 py-3 rounded-xl font-orbitron text-sm uppercase transition-all"
           style={{ background: 'rgba(48,186,120,0.15)', border: '1px solid rgba(48,186,120,0.5)', color: '#30ba78' }}
         >
           <Zap className="inline-block w-4 h-4 mr-1" />

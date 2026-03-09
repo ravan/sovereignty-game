@@ -41,12 +41,12 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
           <span className="suse-pill">Powered by SUSE</span>
         </div>
         <h1
-          className="font-orbitron font-black tracking-widest"
+          className="font-orbitron font-black "
           style={{ fontSize: 'clamp(1.6rem, 5vw, 3.5rem)', color: '#30ba78' }}
         >
           Sovereignty Quiz
         </h1>
-        <p className="font-orbitron text-sm md:text-base tracking-widest mt-2" style={{ color: '#ffffff' }}>
+        <p className="font-orbitron text-sm md:text-base  mt-2" style={{ color: '#ffffff' }}>
           Can You Defend Digital Independence?
         </p>
       </div>
@@ -54,15 +54,15 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
       {/* Stats row */}
       {showHighlights && (
         <div className="flex gap-4 md:gap-8 text-center screen-enter">
-          <div className="neon-border-cyan rounded-lg px-4 py-2 glass">
+          <div className=" rounded-lg px-4 py-2 glass">
             <div className="font-orbitron font-bold text-lg md:text-2xl neon-green">10</div>
             <div className="text-xs opacity-60 mt-0.5">QUESTIONS</div>
           </div>
-          <div className="neon-border-purple rounded-lg px-4 py-2 glass">
+          <div className="n rounded-lg px-4 py-2 glass">
             <div className="font-orbitron font-bold text-lg md:text-2xl" style={{ color: '#ffffff' }}>20s</div>
             <div className="text-xs opacity-60 mt-0.5">PER QUESTION</div>
           </div>
-          <div className="neon-border-cyan rounded-lg px-4 py-2 glass">
+          <div className="  rounded-lg px-4 py-2 glass">
             <div className="font-orbitron font-bold text-lg md:text-2xl" style={{ color: '#5fd4a0' }}>10K</div>
             <div className="text-xs opacity-60 mt-0.5">MAX SCORE</div>
           </div>
@@ -72,8 +72,8 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
       {/* Name input + Play */}
       <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col gap-4">
         <div>
-          <label className="block font-orbitron text-xs tracking-widest mb-2" style={{ color: '#ffffff' }}>
-            Enter Your Name
+          <label className="block font-orbitron text-xs   mb-2" style={{ color: '#ffffff' }}>
+            Choose a game name
           </label>
           <input
             type="text"
@@ -87,7 +87,7 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
         <button
           type="submit"
           disabled={name.trim().length < 1}
-          className="relative overflow-hidden rounded-lg px-6 py-4 font-orbitron font-bold text-sm md:text-lg tracking-widest uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="relative overflow-hidden rounded-lg px-6 py-4 font-orbitron font-bold text-sm md:text-lg  uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
           style={{
             background: name.trim().length >= 1
               ? 'linear-gradient(135deg, rgba(48,186,120,0.2), rgba(255,255,255,0.08))'
@@ -113,7 +113,7 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
         <div className="w-full max-w-sm glass rounded-xl neon-border-cyan overflow-hidden screen-enter">
           <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10">
             <Trophy className="w-4 h-4" style={{ color: '#bd3314' }} />
-            <span className="font-orbitron text-xs tracking-widest" style={{ color: '#bd3314' }}>
+            <span className="font-orbitron text-xs  " style={{ color: '#bd3314' }}>
               Today's Top Players
             </span>
           </div>
