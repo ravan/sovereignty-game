@@ -81,7 +81,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
+    <div className="relative bg-grid scanline" style={{ minHeight: '100vh', overflow: 'hidden' }}>
 
 
       {state.phase === 'intro' && (
