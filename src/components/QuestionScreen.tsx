@@ -101,7 +101,7 @@ export function QuestionScreen({
       </div>
 
       {/* Question text — fixed 3-line height, lighter weight for hierarchy */}
-      <div className="quiz-question glass rounded-xl px-5 py-3 neon-border-cyan text-center flex-shrink-0 flex items-center justify-center"
+      <div className="quiz-question  rounded-xl px-5 py-3  text-center flex-shrink-0 flex items-center justify-center"
         style={{ minHeight: 'calc(3 * 1.5em + 1.5rem)', fontSize: 'clamp(1rem, 2.5vw, 1.35rem)',  }}
       >
         <p
