@@ -231,6 +231,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
               <span className="font-orbitron text-sm   neon-green">Scan to Play</span>
             </div>
             <p className="font-orbitron text-xs opacity-40">{gameUrl}</p>
+            <img src="/dashboard-geeko.svg" alt="geeko looking upwards" />
           </div>
         </div>
 
