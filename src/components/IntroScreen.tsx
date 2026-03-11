@@ -113,12 +113,12 @@ export function IntroScreen({ onStart }: IntroScreenProps) {
       {entries.length > 0 && (
         <div className="w-full max-w-sm glass rounded-xl neon-border-cyan overflow-hidden screen-enter">
           <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10">
-            <a href="/dashboard" style={{ display:'block' }} > 
+            
             
             <span className="font-orbitron text-xs uppercase tracking-widest " style={{ color: '#fe7c3f' }}>
               <Trophy className="w-4 h-4 "  style={{ display: 'inline',color: '#fe7c3f' }} /> Today's Top Players
             </span>
-          </a></div>
+          </div>
           <div className="p-3 space-y-2">
             {entries.slice(0, 5).map((entry, i) => {
               const rank = getRankTier(entry.score);

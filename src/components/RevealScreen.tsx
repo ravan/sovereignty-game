@@ -62,7 +62,7 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
 
       {/* Points earned */}
       {showPoints && answer.points > 0 && (
-        <div className="font-orbitron font-black text-3xl md:text-5xl neon-green screen-enter">
+        <div className="font-orbitron font-black text-3xl md:text-5xl neon-green screen-enter" style={{ color: '#fff' }} >
           +{answer.points.toLocaleString()} pts
         </div>
       )}
