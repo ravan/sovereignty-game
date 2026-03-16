@@ -322,18 +322,18 @@ export function ContactExpertModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 bg-black/60 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-expert-title"
     >
       <div
-        className="glass rounded-2xl neon-border-cyan max-w-lg w-full max-h-[90vh] overflow-hidden"
+        className="glass rounded-2xl neon-border-cyan max-w-lg w-full my-auto max-h-[90dvh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-6 flex items-center justify-between border-b border-white/10">
+        <div className="p-6 flex items-center justify-between border-b border-white/10 shrink-0">
           <div className="flex items-center gap-3">
             <MessageSquare className="w-7 h-7" style={{ color: '#30ba78' }} />
             <div>
@@ -353,7 +353,7 @@ export function ContactExpertModal({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto max-h-[calc(90vh-180px)]">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto min-h-0 flex-1">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="contact-firstName" className="block text-sm font-medium text-white/80 mb-1.5">
