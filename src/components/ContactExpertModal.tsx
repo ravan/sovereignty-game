@@ -233,12 +233,16 @@ interface ContactExpertModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: ContactFormData) => void;
+  title?: string;
+  subtitle?: string;
 }
 
 export function ContactExpertModal({
   isOpen,
   onClose,
   onSubmit,
+  title = 'Talk to an Expert',
+  subtitle = 'Let us help you on your sovereignty journey',
 }: ContactExpertModalProps) {
 
   const [firstName, setFirstName] = useState('');
@@ -334,9 +338,9 @@ export function ContactExpertModal({
             <MessageSquare className="w-7 h-7" style={{ color: '#30ba78' }} />
             <div>
               <h2 id="contact-expert-title" className="font-orbitron font-bold text-lg" style={{ color: '#30ba78' }}>
-                Talk to an Expert
+                {title}
               </h2>
-              <p className="text-white/60 text-sm">Let us help you on your sovereignty journey</p>
+              <p className="text-white/60 text-sm">{subtitle}</p>
             </div>
           </div>
           <button

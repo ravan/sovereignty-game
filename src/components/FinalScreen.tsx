@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { GameState } from '../types';
 import { Question } from '../types';
 import { db } from '../supabase';
-import { Trophy, Target, Zap, Flame, MessageSquare } from 'lucide-react';
+import { Trophy, Target, Zap, Flame, MessageSquare, ClipboardCheck } from 'lucide-react';
 import { ContactExpertModal, ContactFormData } from './ContactExpertModal';
 import { MarketoFormData, MARKETO_FORM_ID } from '../hooks/useMarketo';
 
@@ -106,11 +106,10 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
   const [submitting, setSubmitting] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [showSelfAssessmentModal, setShowSelfAssessmentModal] = useState(false);
+  const [selfAssessmentSubmitted, setSelfAssessmentSubmitted] = useState(false);
 
-  const handleContactSubmit = (data: ContactFormData) => {
-    setShowContactModal(false);
-    setContactSubmitted(true);
-
+  const submitToMarketo = (data: ContactFormData, campaignEnvVar: string) => {
     if (isMarketoReady) {
       const marketoData: MarketoFormData = {
         Email: data.email,
@@ -121,12 +120,24 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         Country: data.country,
         State: data.state || undefined,
         optin: data.optin,
-        customCampaignInput: import.meta.env.VITE_MARKETO_CAMPAIGN_TALK_TO_EXPERT || undefined,
+        customCampaignInput: campaignEnvVar || undefined,
       };
       submitMarketoForm(marketoData).then((success) => {
         console.log('[Marketo]', success ? 'submitted' : 'failed');
       });
     }
+  };
+
+  const handleContactSubmit = (data: ContactFormData) => {
+    setShowContactModal(false);
+    setContactSubmitted(true);
+    submitToMarketo(data, import.meta.env.VITE_MARKETO_CAMPAIGN_TALK_TO_EXPERT || '0014674_Digital_Sovereignty_Quiz_Talk_to_an_Expert');
+  };
+
+  const handleSelfAssessmentSubmit = (data: ContactFormData) => {
+    setShowSelfAssessmentModal(false);
+    setSelfAssessmentSubmitted(true);
+    submitToMarketo(data, import.meta.env.VITE_MARKETO_CAMPAIGN_SELF_ASSESSMENT || '0014677_Digital_Sovereignty_Quiz_Sovereignty_Framework_Self-Assessment_Request');
   };
   const rank = useMemo(() => getRank(state.score), [state.score]);
   const avgTime = state.answers.length
@@ -243,25 +254,46 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         </p>
       )}
 
-      {/* Talk to Expert CTA */}
-      {!contactSubmitted ? (
-        <button
-          onClick={() => setShowContactModal(true)}
-          className="w-full py-3.5 rounded-xl font-orbitron text-sm uppercase transition-all flex items-center justify-center gap-2"
-          style={{
-            background: 'rgba(48,186,120,0.15)',
-            border: '2px solid rgba(48,186,120,0.5)',
-            color: '#30ba78',
-          }}
-        >
-          <MessageSquare className="w-5 h-5" />
-          Talk to an Expert
-        </button>
-      ) : (
-        <p className="font-orbitron text-xs tracking-widest" style={{ color: '#30ba78' }}>
-          ✓ Request Sent
-        </p>
-      )}
+      {/* CTA Buttons */}
+      <div className="w-full flex flex-col gap-3">
+        {!contactSubmitted ? (
+          <button
+            onClick={() => setShowContactModal(true)}
+            className="w-full py-3.5 rounded-xl font-orbitron text-sm uppercase transition-all flex items-center justify-center gap-2"
+            style={{
+              background: 'rgba(48,186,120,0.15)',
+              border: '2px solid rgba(48,186,120,0.5)',
+              color: '#30ba78',
+            }}
+          >
+            <MessageSquare className="w-5 h-5" />
+            Talk to an Expert
+          </button>
+        ) : (
+          <p className="font-orbitron text-xs text-center" style={{ color: '#30ba78' }}>
+            ✓ Expert Request Sent
+          </p>
+        )}
+
+        {!selfAssessmentSubmitted ? (
+          <button
+            onClick={() => setShowSelfAssessmentModal(true)}
+            className="w-full py-3.5 rounded-xl font-orbitron text-sm uppercase transition-all flex items-center justify-center gap-2"
+            style={{
+              background: 'rgba(254,124,63,0.15)',
+              border: '2px solid rgba(254,124,63,0.5)',
+              color: '#fe7c3f',
+            }}
+          >
+            <ClipboardCheck className="w-5 h-5" />
+            Self-Assessment Request
+          </button>
+        ) : (
+          <p className="font-orbitron text-xs text-center" style={{ color: '#fe7c3f' }}>
+            ✓ Self-Assessment Request Sent
+          </p>
+        )}
+      </div>
 
       {/* Actions */}
       <div className="flex gap-4 w-full">
@@ -287,6 +319,14 @@ export function FinalScreen({ state, questions, correctCount, onLeaderboard, onP
         isOpen={showContactModal}
         onClose={() => setShowContactModal(false)}
         onSubmit={handleContactSubmit}
+      />
+
+      <ContactExpertModal
+        isOpen={showSelfAssessmentModal}
+        onClose={() => setShowSelfAssessmentModal(false)}
+        onSubmit={handleSelfAssessmentSubmit}
+        title="Sovereignty Framework Self-Assessment"
+        subtitle="Request a personalized sovereignty framework assessment"
       />
 
       {/* Hidden Marketo form element */}
