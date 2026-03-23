@@ -182,7 +182,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
   const meta = SCOPE_META[scope];
   const refreshIntervalMs = getRefreshIntervalMs();
 
-  const { entries, loading, lastUpdated } = useLeaderboard(scope, true, refreshIntervalMs);
+  const { entries, totalPlayers, loading, lastUpdated } = useLeaderboard(scope, true, refreshIntervalMs);
 
   // Auto-cycle through scopes
   useEffect(() => {
@@ -282,7 +282,7 @@ export function DisplayMode({ gameUrl }: DisplayModeProps) {
         {entries.length > 0 && (
           <div className="flex justify-around glass rounded-xl px-6 py-3 neon-border-cyan">
             <div className="text-center">
-              <div className="font-orbitron font-bold text-2xl neon-green">{entries.length}</div>
+              <div className="font-orbitron font-bold text-2xl neon-green">{totalPlayers}</div>
               <div className="font-orbitron text-xs opacity-40">
                 {scope === 'today' ? 'PLAYERS TODAY' : scope === 'week' ? 'PLAYERS THIS WEEK' : 'ALL-TIME PLAYERS'}
               </div>

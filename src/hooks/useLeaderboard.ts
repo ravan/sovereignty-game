@@ -6,6 +6,7 @@ export type LeaderboardScope = 'today' | 'week' | 'alltime';
 
 export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = false, refreshIntervalMs = 15_000) {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
+  const [totalPlayers, setTotalPlayers] = useState(0);
   const [loading, setLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
@@ -20,7 +21,9 @@ export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = 
       } else {
         data = await db.getAllTimeLeaderboard(20);
       }
+      const count = await db.getLeaderboardCount(scope);
       setEntries(data);
+      setTotalPlayers(count);
       setLastUpdated(new Date());
     } finally {
       setLoading(false);
@@ -45,5 +48,5 @@ export function useLeaderboard(scope: LeaderboardScope = 'today', autoRefresh = 
     return unsub;
   }, [autoRefresh, fetch]);
 
-  return { entries, loading, lastUpdated, refresh: fetch };
+  return { entries, totalPlayers, loading, lastUpdated, refresh: fetch };
 }

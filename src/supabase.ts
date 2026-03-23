@@ -149,6 +149,27 @@ export const db = {
     return entries.slice(0, limit);
   },
 
+  async getLeaderboardCount(scope: 'today' | 'week' | 'alltime'): Promise<number> {
+    if (supabase) {
+      try {
+        let query = supabase.from('leaderboard').select('id', { count: 'exact', head: true });
+        if (scope === 'today') query = query.eq('session_date', todayStr());
+        else if (scope === 'week') query = query.gte('played_at', weekAgoISO());
+        const { count, error } = await query;
+        if (!error && count !== null) return count;
+      } catch {
+        // fall through to local
+      }
+    }
+    const entries = readLocal();
+    if (scope === 'today') return entries.filter((e) => e.session_date === todayStr()).length;
+    if (scope === 'week') {
+      const cutoff = new Date(weekAgoISO());
+      return entries.filter((e) => e.played_at && new Date(e.played_at) >= cutoff).length;
+    }
+    return entries.length;
+  },
+
   async getAllTimeLeaderboard(limit = 10): Promise<LeaderboardEntry[]> {
     if (supabase) {
       try {
