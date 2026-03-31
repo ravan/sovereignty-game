@@ -8,8 +8,8 @@ interface ConferenceDisplayProps {
 }
 
 const PAGE_CONFIG = [
-  { duration: 20_000, label: 'Dashboard' },
-  { duration: 15_000, label: 'Assessment' },
+  { duration: 12_000, label: 'Dashboard' },
+  { duration: 10_000, label: 'Assessment' },
   { duration: 0,      label: 'Demo' },       // dynamic — GameSimulation calls onComplete
 ];
 
@@ -117,8 +117,8 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
     <div className="relative h-screen w-screen overflow-hidden" style={{ background: 'var(--bg)' }}>
       {/* Page content */}
       <div className={transitionClass} style={{ position: 'absolute', inset: 0 }}>
-        {currentPage === 0 && <DisplayMode gameUrl={gameUrl} slideIndicator={slideIndicator} />}
-        {currentPage === 1 && <SovereigntyAssessmentCTA slideIndicator={slideIndicator} />}
+        {currentPage === 0 && <DisplayMode gameUrl={gameUrl} slideIndicator={slideIndicator} conferenceMode />}
+        {currentPage === 1 && <SovereigntyAssessmentCTA gameUrl={gameUrl} slideIndicator={slideIndicator} />}
         {currentPage === 2 && <GameSimulation gameUrl={gameUrl} onComplete={handleDemoComplete} slideIndicator={slideIndicator} />}
       </div>
     </div>

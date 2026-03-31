@@ -7,6 +7,7 @@ import { DashboardLeftPanel } from './DashboardLeftPanel';
 interface DisplayModeProps {
   gameUrl: string;
   slideIndicator?: ReactNode;
+  conferenceMode?: boolean;
 }
 
 const RANKS = [
@@ -112,21 +113,22 @@ function getRefreshIntervalMs(): number {
   return 15_000;
 }
 
-export function DisplayMode({ gameUrl, slideIndicator }: DisplayModeProps) {
+export function DisplayMode({ gameUrl, slideIndicator, conferenceMode }: DisplayModeProps) {
   const [scopeIndex, setScopeIndex] = useState(0);
-  const scope = SCOPE_CYCLE[scopeIndex];
+  const scope = conferenceMode ? 'today' : SCOPE_CYCLE[scopeIndex];
   const meta = SCOPE_META[scope];
   const refreshIntervalMs = getRefreshIntervalMs();
 
   const { entries, totalPlayers, loading, lastUpdated } = useLeaderboard(scope, true, refreshIntervalMs);
 
-  // Auto-cycle through scopes
+  // Auto-cycle through scopes (disabled in conference mode)
   useEffect(() => {
+    if (conferenceMode) return;
     const id = setInterval(() => {
       setScopeIndex((i) => (i + 1) % SCOPE_CYCLE.length);
     }, SCOPE_DURATION_MS);
     return () => clearInterval(id);
-  }, []);
+  }, [conferenceMode]);
 
   return (
     <div className="relative z-10 flex h-screen w-screen overflow-hidden">
@@ -158,7 +160,7 @@ export function DisplayMode({ gameUrl, slideIndicator }: DisplayModeProps) {
               </div>
             )}
           </div>
-          <ScopeProgressBar scopeIndex={scopeIndex} />
+          {!conferenceMode && <ScopeProgressBar scopeIndex={scopeIndex} />}
         </div>
 
         <div className="flex flex-col gap-2 flex-1 overflow-y-auto">

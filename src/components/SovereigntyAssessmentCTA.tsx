@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
 import { Shield, ClipboardCheck, Target, TrendingUp, Lock, Monitor, FileText } from 'lucide-react';
+import { DashboardLeftPanel } from './DashboardLeftPanel';
 
 interface SovereigntyAssessmentCTAProps {
+  gameUrl: string;
   slideIndicator?: ReactNode;
 }
 
@@ -30,9 +32,14 @@ const STEPS = [
   { step: 3, title: 'Improve', desc: 'Get SUSE solution recommendations', icon: TrendingUp, color: '#fe7c3f' },
 ];
 
-export function SovereigntyAssessmentCTA({ slideIndicator }: SovereigntyAssessmentCTAProps = {}) {
+export function SovereigntyAssessmentCTA({ gameUrl, slideIndicator }: SovereigntyAssessmentCTAProps) {
   return (
-    <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-12 py-8 pb-14 gap-6 max-w-6xl mx-auto w-full overflow-hidden">
+    <div className="relative z-10 flex h-screen w-screen overflow-hidden">
+      {/* Left panel: Title + QR Code */}
+      <DashboardLeftPanel gameUrl={gameUrl} slideIndicator={slideIndicator} />
+
+      {/* Right panel: Assessment content */}
+      <div className="flex flex-col items-center justify-center flex-1 px-10 py-6 gap-5 overflow-hidden">
 
       {/* Header */}
       <div className="text-center stagger-1">
@@ -152,12 +159,7 @@ export function SovereigntyAssessmentCTA({ slideIndicator }: SovereigntyAssessme
         </div>
       </div>
 
-      {/* Slide indicator — fixed bottom center on assessment page */}
-      {slideIndicator && (
-        <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 rounded-full px-3 py-1" style={{ background: 'rgba(6,24,22,0.7)', backdropFilter: 'blur(4px)' }}>
-          {slideIndicator}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
