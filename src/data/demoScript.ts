@@ -7,18 +7,14 @@ export interface DemoStep {
   delayBeforeAnswer: number; // ms to wait before auto-answering
 }
 
-// Pick 5 diverse questions: mix categories, correct/wrong, visual variety
+// 3 questions: correct → wrong → correct — snappy demo with a narrative arc
 export const DEMO_SCRIPT: DemoStep[] = [
-  // Q1: Linux Independence (easy) — CORRECT (answer quickly for high points)
-  { questionIndex: 0, chosenAnswer: 0, delayBeforeAnswer: 4000 },
+  // Q1: Linux Independence (easy) — CORRECT (fast answer, high points)
+  { questionIndex: 0, chosenAnswer: 0, delayBeforeAnswer: 3500 },
   // Q2: Cloud Strategy — WRONG (picks option 0 but correct is 3)
-  { questionIndex: 5, chosenAnswer: 0, delayBeforeAnswer: 6000 },
-  // Q3: Supply Chain Security — CORRECT
-  { questionIndex: 7, chosenAnswer: 1, delayBeforeAnswer: 3500 },
-  // Q4: Sovereign AI — WRONG (picks option 0 but correct is 3)
-  { questionIndex: 9, chosenAnswer: 0, delayBeforeAnswer: 5500 },
-  // Q5: Edge Computing — CORRECT (fast answer)
-  { questionIndex: 12, chosenAnswer: 3, delayBeforeAnswer: 3000 },
+  { questionIndex: 5, chosenAnswer: 0, delayBeforeAnswer: 5000 },
+  // Q3: Supply Chain Security — CORRECT (redemption arc)
+  { questionIndex: 7, chosenAnswer: 1, delayBeforeAnswer: 3000 },
 ];
 
 export const DEMO_TOTAL_QUESTIONS = DEMO_SCRIPT.length;
