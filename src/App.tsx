@@ -6,6 +6,7 @@ import { RevealScreen } from './components/RevealScreen';
 import { FinalScreen } from './components/FinalScreen';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { DisplayMode } from './components/DisplayMode';
+import { ConferenceDisplay } from './components/ConferenceDisplay';
 import { useGame } from './hooks/useGame';
 import { useMarketo } from './hooks/useMarketo';
 
@@ -16,6 +17,10 @@ function getGameUrl(): string {
 
 function isDashboard(): boolean {
   return window.location.pathname.replace(/\/+$/, '').endsWith('/dashboard');
+}
+
+function isConferenceMode(): boolean {
+  return window.location.pathname.replace(/\/+$/, '').endsWith('/conference');
 }
 
 function isDisplayMode(): boolean {
@@ -71,10 +76,17 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler);
   }, [state.phase, submitAnswer]);
 
+  if (isConferenceMode()) {
+    return (
+      <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
+        <ConferenceDisplay gameUrl={getGameUrl()} />
+      </div>
+    );
+  }
+
   if (isDisplayMode()) {
     return (
       <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
-  
         <DisplayMode gameUrl={getGameUrl()} />
       </div>
     );
