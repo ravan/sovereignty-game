@@ -278,3 +278,48 @@ html, body, #root {
   min-height: 100% !important;
   height: 100% !important;
 }
+
+/* ── Geeko animations ──────────────────────────────────────────────────────── */
+svg * { transform-box: fill-box; }
+
+#gp-tail {
+  animation: geekoSway 6s infinite;
+}
+
+#gp-pupil {
+  animation: geekoLook 4s infinite;
+}
+
+#gp-head {
+  animation: geekoSway 6s infinite;
+  transform-origin: bottom left;
+}
+
+#gp-eyelids {
+  animation: geekoBlink 2s infinite;
+}
+
+#gl-head {
+  animation: geekoSway 5s infinite;
+  transform-origin: bottom left;
+}
+
+#gl-eyelids {
+  animation: geekoBlink 3s infinite;
+}
+
+@keyframes geekoSway {
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes geekoBlink {
+  0%, 35% { stroke-width: 0; }
+  50% { stroke-width: 120; }
+  65%, 100% { stroke-width: 0; }
+}
+
+@keyframes geekoLook {
+  0% { transform: translate(-5%, -5%); }
+  50% { transform: translate(10%, 85%); }
+  100% { transform: translate(-5%, -5%); }
+}
