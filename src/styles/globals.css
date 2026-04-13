@@ -391,3 +391,4 @@ html, body, #root {
 /* Disable head sway on the sitting/laying geeko in the report slide —
    the transform-origin doesn't match the body position at small sizes */
 .dr-sitting-geeko #gl-head { animation: none; }
+.dr-dangling-geeko svg { transform: scaleX(-1); }

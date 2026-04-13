@@ -61,6 +61,13 @@ function AnimatedStat({ target, delay }: { target: number; delay: number }) {
 export function DigitalResilienceCTA({ slideIndicator }: DigitalResilienceCTAProps) {
   return (
     <div className="relative z-10 flex h-screen w-screen overflow-hidden">
+      {/* Dangling Geeko — hangs from top-right edge */}
+      <InlineSVG
+        src="/geeko/geeko-dangling.svg"
+        className="stagger-1 dr-dangling-geeko fixed top-0 right-0 z-20"
+        style={{ width: '20rem' }}
+      />
+
       {/* Full-width layout — no left panel */}
       <div className="flex flex-1 overflow-hidden">
 
@@ -134,15 +141,8 @@ export function DigitalResilienceCTA({ slideIndicator }: DigitalResilienceCTAPro
         {/* Right: QR code + Geekos */}
         <div className="flex flex-col items-center justify-center w-[38%] px-8 py-8 gap-6 border-l border-white/10">
 
-          {/* Dangling Geeko — top decoration */}
-          <InlineSVG
-            src="/geeko/geeko-dangling.svg"
-            className="stagger-1 dr-dangling-geeko"
-            style={{ width: '14rem', marginTop: '-0.5rem' }}
-          />
-
           {/* QR Code */}
-          <div className="stagger-3 flex flex-col items-center gap-4">
+          <div className="stagger-3 flex flex-col items-center gap-4 mt-auto mb-auto pt-48">
             <div
               className="p-5 rounded-2xl"
               style={{ background: '#fff', border: '3px solid #30ba78' }}
