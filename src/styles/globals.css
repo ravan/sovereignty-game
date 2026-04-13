@@ -280,7 +280,8 @@ html, body, #root {
 }
 
 /* ── Geeko animations ──────────────────────────────────────────────────────── */
-#svg105 * { transform-box: fill-box; }
+#svg105 *,
+#geeko-laying * { transform-box: fill-box; }
 
 #gp-tail {
   animation: geekoSway 6s infinite;
@@ -323,3 +324,70 @@ html, body, #root {
   50% { transform: translate(10%, 85%); }
   100% { transform: translate(-5%, -5%); }
 }
+
+/* ── Dangling Geeko animations ────────────────────────────────────────────── */
+.dangling-geeko * { transform-box: fill-box; }
+
+.dg-body {
+  transform-origin: top right;
+  animation: dgBranchSway 5s infinite;
+}
+@keyframes dgBranchSway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.dg-frontleg { transform-origin: 10% 10%; }
+.dg-backleg  { transform-origin: 20% 100%; }
+.dg-backleg,
+.dg-backleg :last-child,
+.dg-backleg :nth-child(2),
+.dg-frontleg,
+.dg-frontleg :last-child {
+  animation: dgSway 6s infinite;
+}
+.dg-backleg { animation-delay: -3s; }
+.dg-backleg :nth-child(2),
+.dg-frontleg { animation-delay: -6s; }
+@keyframes dgSway { 50% { transform: rotate(10deg); } }
+
+.dg-head {
+  transform-origin: 50% 50%;
+  animation: dgBop 6s infinite;
+}
+@keyframes dgBop { 50% { transform: rotate(-15deg) translate(0%, 0%); } }
+
+.dg-pupil {
+  animation: dgLook 4s infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes dgLook {
+  0%   { transform: translate(-5%, -5%); }
+  50%  { transform: translate(10%, 85%); }
+  100% { transform: translate(-5%, -5%); }
+}
+
+.dg-eyelids { animation: dgBlink 2s infinite; }
+@keyframes dgBlink {
+  0%, 25%  { stroke-width: 0; }
+  50%      { stroke-width: 240; }
+  75%, 100% { stroke-width: 0; }
+}
+
+/* ── Climbing / Swaying Geeko animations (geeko-swaying.svg) ─────────────── */
+#climbing-geeko {
+  transform-origin: bottom right;
+  animation: dgBranchSway 5s infinite;
+}
+
+#gc-leaves-1 { transform-origin: top right; }
+#gc-leaves-2 { transform-origin: 50% 100%; }
+#gc-leaves-1,
+#gc-leaves-2 { animation: dgSway 6s infinite; }
+
+#gc-eyelids { animation: geekoBlink 2s infinite; }
+#gc-pupil   { animation: geekoLook 4s infinite; }
+
+/* Disable head sway on the sitting/laying geeko in the report slide —
+   the transform-origin doesn't match the body position at small sizes */
+.dr-sitting-geeko #gl-head { animation: none; }

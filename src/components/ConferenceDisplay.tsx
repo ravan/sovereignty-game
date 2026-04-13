@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef, ReactNode } from 'react';
 import { DisplayMode } from './DisplayMode';
 import { SovereigntyAssessmentCTA } from './SovereigntyAssessmentCTA';
+import { DigitalResilienceCTA } from './DigitalResilienceCTA';
 import { GameSimulation } from './GameSimulation';
 
 interface ConferenceDisplayProps {
@@ -11,6 +12,7 @@ const PAGE_CONFIG = [
   { duration: 12_000, label: 'Dashboard' },
   { duration: 10_000, label: 'Assessment' },
   { duration: 0,      label: 'Demo' },       // dynamic — GameSimulation calls onComplete
+  { duration: 12_000, label: 'Report' },
 ];
 
 type TransitionPhase = 'active' | 'fading-out' | 'fading-in';
@@ -120,6 +122,7 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
         {currentPage === 0 && <DisplayMode gameUrl={gameUrl} slideIndicator={slideIndicator} conferenceMode />}
         {currentPage === 1 && <SovereigntyAssessmentCTA gameUrl={gameUrl} slideIndicator={slideIndicator} />}
         {currentPage === 2 && <GameSimulation gameUrl={gameUrl} onComplete={handleDemoComplete} slideIndicator={slideIndicator} />}
+        {currentPage === 3 && <DigitalResilienceCTA slideIndicator={slideIndicator} />}
       </div>
     </div>
   );
