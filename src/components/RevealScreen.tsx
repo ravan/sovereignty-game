@@ -26,14 +26,13 @@ export function RevealScreen({ question, answer, questionNumber, totalQuestions,
   }, []);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setCountdown((c) => {
-        if (c <= 1) { clearInterval(id); onNext(); return 0; }
-        return c - 1;
-      });
-    }, 1000);
-    return () => clearInterval(id);
-  }, [onNext]);
+    if (countdown <= 0) {
+      onNext();
+      return;
+    }
+    const id = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(id);
+  }, [countdown, onNext]);
 
   const chosenText = answer.chosen >= 0 ? question.options[answer.chosen] : null;
   const correctText = question.options[question.correct];

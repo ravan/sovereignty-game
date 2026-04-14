@@ -71,6 +71,7 @@ export function GameSimulation({ gameUrl, onComplete, slideIndicator }: GameSimu
   // Auto-answer during question phase
   useEffect(() => {
     if (phase !== 'question') return;
+    if (!currentStep) return;
     answerTriggeredRef.current = false;
     const timer = setTimeout(() => {
       if (!answerTriggeredRef.current) {

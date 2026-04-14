@@ -7,13 +7,11 @@ export interface DemoStep {
   delayBeforeAnswer: number; // ms to wait before auto-answering
 }
 
-// 3 questions: correct → wrong → correct — snappy demo with a narrative arc
+// 2 questions: correct → correct — snappy demo for the conference loop
 export const DEMO_SCRIPT: DemoStep[] = [
   // Q1: Linux Independence (easy) — CORRECT (fast answer, high points)
   { questionIndex: 0, chosenAnswer: 0, delayBeforeAnswer: 3500 },
-  // Q2: Cloud Strategy — WRONG (picks option 0 but correct is 3)
-  { questionIndex: 5, chosenAnswer: 0, delayBeforeAnswer: 5000 },
-  // Q3: Supply Chain Security — CORRECT (redemption arc)
+  // Q2: Supply Chain Security — CORRECT
   { questionIndex: 7, chosenAnswer: 1, delayBeforeAnswer: 3000 },
 ];
 
