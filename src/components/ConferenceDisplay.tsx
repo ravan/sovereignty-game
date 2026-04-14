@@ -24,13 +24,16 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const advanceToNextPage = useCallback(() => {
+  const goToPage = useCallback((nextIndex: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    if (progressRef.current) clearInterval(progressRef.current);
+
     // Start fade-out
     setTransitionPhase('fading-out');
 
     setTimeout(() => {
       // Swap page while invisible
-      setCurrentPage((p) => (p + 1) % PAGE_CONFIG.length);
+      setCurrentPage(nextIndex);
       setTransitionPhase('fading-in');
       setProgress(0);
 
@@ -40,6 +43,10 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
       }, 50); // small delay so browser picks up the fading-in class before transitioning to active
     }, 600); // match CSS transition duration
   }, []);
+
+  const advanceToNextPage = useCallback(() => {
+    goToPage((currentPage + 1) % PAGE_CONFIG.length);
+  }, [goToPage, currentPage]);
 
   // Auto-advance timer for pages with fixed duration
   useEffect(() => {
@@ -73,11 +80,23 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
     transitionPhase === 'fading-in' ? 'conference-page conference-page-enter' :
     'conference-page';
 
+  const handleIndicatorClick = useCallback((i: number) => {
+    if (i === currentPage || transitionPhase !== 'active') return;
+    goToPage(i);
+  }, [currentPage, transitionPhase, goToPage]);
+
   // Slide indicator widget — passed into the left panel
   const slideIndicator: ReactNode = (
     <div className="flex gap-2 justify-center">
       {PAGE_CONFIG.map((config, i) => (
-        <div key={i} className="flex flex-col items-center gap-1">
+        <button
+          key={i}
+          type="button"
+          onClick={() => handleIndicatorClick(i)}
+          aria-label={`Go to ${config.label}`}
+          className="flex flex-col items-center gap-1 bg-transparent border-0 p-0 cursor-pointer"
+          style={{ cursor: i === currentPage ? 'default' : 'pointer' }}
+        >
           <div
             className="rounded-full overflow-hidden"
             style={{
@@ -110,7 +129,7 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
           >
             {config.label}
           </span>
-        </div>
+        </button>
       ))}
     </div>
   );
