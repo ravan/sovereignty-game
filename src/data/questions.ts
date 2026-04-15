@@ -9,8 +9,8 @@ export const ALL_QUESTIONS: Question[] = [
     question: 'A vendor restricts RHEL source code, leaving your 500-server estate at immediate supply chain risk. What is the fastest sovereignty fix with zero OS changes?',
     options: [
       'Transition to an independent, EU-headquartered patch supply chain for the existing OS',
-      'Migrate the entire fleet to a community-driven distribution',
-      'Maintain current subscriptions and hope for a policy reversal',
+      'Migrate the entire 500-server fleet to a community-driven distribution with volunteer-maintained patches',
+      'Keep current vendor subscriptions and escalate through procurement while awaiting a policy reversal',
       'Move to an unmanaged, upstream-only stream',
     ],
     correct: 0,
@@ -40,9 +40,9 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '🐧',
     question: 'You manage 800 mixed RHEL and Ubuntu servers with inconsistent patching across the fleet. What is the most efficient fix for multi-distro compliance?',
     options: [
-      'Standardize on a single distribution via a 6-month migration project',
+      'Standardize the entire 800-server estate on a single distribution via a 6-month forced migration',
       'Use a unified management plane to centralize patching and configuration across all Linux types',
-      'Deploy vendor-specific management consoles for each distribution',
+      'Deploy a separate vendor-specific management console for each distribution and retrain the ops team',
       'Develop custom Ansible playbooks for each OS version',
     ],
     correct: 1,
@@ -59,7 +59,7 @@ export const ALL_QUESTIONS: Question[] = [
     question: 'VMware licensing costs tripled after an acquisition and 200 VMs need moving. Which move best restores infrastructure independence?',
     options: [
       'Negotiate a multi-year renewal with the current provider',
-      'Move all virtualized workloads to a single public cloud hyperscaler',
+      'Move all 200 virtualized workloads to a single public cloud hyperscaler under a long-term contract',
       'Adopt an open-source, KVM-based virtualization platform that is air-gap capable',
       'Migrate to a different proprietary, closed-source hypervisor',
     ],
@@ -92,9 +92,9 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '☁️',
     question: 'Your workloads span AWS and Azure with no unified compliance or security view. What is the way to get a single view across all providers?',
     options: [
-      'Consolidate all operations on a single global hyperscaler',
+      'Consolidate all cross-cloud operations on a single global hyperscaler and exit the other provider',
       'Build a custom meta-orchestration layer in-house',
-      'Standardize infrastructure using only cloud-native IaC tools',
+      'Standardize infrastructure using only cloud-native IaC tools with per-provider compliance dashboards',
       'Implement a single control plane that abstracts and manages clusters across any environment',
     ],
     correct: 3,
@@ -126,10 +126,10 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '🔗',
     question: 'You have 300+ unvetted Docker images and an EU Cyber Resilience Act audit in 90 days. What is the fastest compliant fix for container supply chains?',
     options: [
-      'Block all public registries and require manual builds',
+      'Block all public container registries and require every team to build images manually from source',
       'Adopt a curated, audited source for container images with SBOM and SLSA provenance',
       'Shift workloads to a different public container registry',
-      'Scan existing public images using basic vulnerability tools',
+      'Scan all 300 existing public images using basic open-source vulnerability scanners before the audit',
     ],
     correct: 1,
     explanation:
@@ -160,7 +160,7 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '🤖',
     question: 'Customer data cannot leave EU jurisdiction, but public AI APIs like OpenAI or Azure would expose it. How do you deliver AI without data leaving premises?',
     options: [
-      'Use public AI APIs with data anonymization layers',
+      'Use public AI APIs fronted by an in-house data anonymization and tokenization layer',
       'Use a "Sovereign AI" service provided via a foreign cloud API',
       'Prohibit all AI usage until global regulations are finalized',
       'Deploy open-weight LLMs on hardened infrastructure within your own firewall',
@@ -176,9 +176,9 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '🤖',
     question: 'Your CISO detects staff sending sensitive documents to unapproved external AI tools. What is the immediate action to stop data exposure?',
     options: [
-      'Block all known AI domains at the network perimeter',
+      'Block all known public AI service domains and endpoints at the corporate network perimeter',
       'Use observability and security tools to detect and govern unauthorized AI API calls',
-      'Conduct an internal survey on AI tool usage',
+      'Conduct an internal survey asking staff to self-report which AI tools they use at work',
       'Issue a policy memo banning unsanctioned AI tools',
     ],
     correct: 1,
@@ -194,10 +194,10 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '⚖️',
     question: 'Your open-source stack is sovereign, but support engineers operate outside EU jurisdiction. How do you close this jurisdictional support gap?',
     options: [
-      'Sign a standard GDPR Data Processing Agreement',
+      'Sign a standard GDPR Data Processing Agreement with every non-EU support provider in the chain',
       'Limit support sessions to end-to-end encrypted tools',
       'Implement localized support provided exclusively by regional engineers under local law',
-      'Build an entirely internal support team and remove vendor access',
+      'Build an entirely internal 24×7 support team and remove all third-party vendor access to systems',
     ],
     correct: 2,
     explanation:
@@ -229,8 +229,8 @@ export const ALL_QUESTIONS: Question[] = [
     question: 'Managing 10,000 nationwide telecom nodes site-by-site is impossible and security must be maintained at scale. How do you manage this massive, decentralized estate as a single unit?',
     options: [
       'Manage the entire edge estate as a single logical fleet with centralized policy enforcement',
-      'Use traditional automation scripts across all sites',
-      'Outsource edge management to a global cloud provider',
+      'Use traditional automation scripts and Ansible playbooks across all 10,000 sites during maintenance',
+      'Outsource edge management of all 10,000 nationwide telecom nodes to a global cloud provider',
       'Manually patch sites during scheduled maintenance windows',
     ],
     correct: 0,
@@ -246,7 +246,7 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '📦',
     question: 'The EU Cyber Resilience Act mandates software transparency for all European products. What is the primary function of an SBOM?',
     options: [
-      'It documents software licensing costs for enterprise procurement teams',
+      'It documents software licensing costs and subscription SKUs for enterprise procurement teams',
       'It provides a full component inventory for vulnerability tracking and compliance',
       'It acts as a performance benchmark for containerized apps',
       'It is a legal disclaimer for user data privacy',
@@ -262,10 +262,10 @@ export const ALL_QUESTIONS: Question[] = [
     categoryIcon: '☁️',
     question: 'Your board needs a framework to measure digital independence across infrastructure dimensions. What do the EU\'s SEAL levels measure?',
     options: [
-      'The physical encryption strength of storage devices',
+      'The physical encryption strength of storage devices used in classified EU government facilities',
       'The energy efficiency of EU data centers',
       'Sovereignty effectiveness across jurisdictional, data, and operational dimensions',
-      'The GDPR adequacy of international data transfers',
+      'The GDPR adequacy status of international data transfers between the EU and third countries',
     ],
     correct: 2,
     explanation:
@@ -282,7 +282,7 @@ export function pickQuestions(n: number): Question[] {
 
 export const GAME_CONFIG = {
   totalQuestions: 10,
-  timePerQuestion: 20, // seconds
+  timePerQuestion: 25, // seconds
   basePoints: 1000,
   maxSpeedBonus: 500,
 };
