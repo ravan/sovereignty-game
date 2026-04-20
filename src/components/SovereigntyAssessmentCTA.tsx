@@ -39,53 +39,53 @@ export function SovereigntyAssessmentCTA({ gameUrl, slideIndicator }: Sovereignt
       <DashboardLeftPanel gameUrl={gameUrl} slideIndicator={slideIndicator} />
 
       {/* Right panel: Assessment content */}
-      <div className="flex flex-col items-center justify-center flex-1 px-10 py-6 gap-5 overflow-hidden">
+      <div className="flex flex-col items-center justify-center flex-1 px-10 py-6 gap-5 3xl:px-20 3xl:py-12 3xl:gap-10 4xl:px-32 4xl:py-16 4xl:gap-14 overflow-hidden">
 
       {/* Header */}
       <div className="text-center stagger-1">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <Shield className="w-10 h-10" style={{ color: '#30ba78' }} />
+        <div className="flex items-center justify-center gap-3 mb-3 3xl:mb-6 4xl:mb-8">
+          <Shield className="w-10 h-10 3xl:w-16 3xl:h-16 4xl:w-24 4xl:h-24" style={{ color: '#30ba78' }} />
         </div>
-        <h1 className="font-orbitron font-black text-4xl md:text-5xl" style={{ color: '#ffffff', lineHeight: 1.15 }}>
+        <h1 className="font-orbitron font-black text-4xl md:text-5xl 3xl:text-7xl 4xl:text-8xl" style={{ color: '#ffffff', lineHeight: 1.15 }}>
           Cloud Sovereignty Framework
         </h1>
-        <h2 className="font-orbitron font-bold text-3xl md:text-4xl mt-1" style={{ color: '#30ba78' }}>
+        <h2 className="font-orbitron font-bold text-3xl md:text-4xl 3xl:text-6xl 4xl:text-7xl mt-1 3xl:mt-3" style={{ color: '#30ba78' }}>
           Self Assessment
         </h2>
       </div>
 
       {/* Hero tagline */}
       <div className="text-center stagger-2">
-        <p className="font-suse text-xl md:text-2xl" style={{ color: 'rgba(214,240,229,0.85)' }}>
+        <p className="font-suse text-xl md:text-2xl 3xl:text-4xl 4xl:text-5xl" style={{ color: 'rgba(214,240,229,0.85)' }}>
           Identify compliance gaps and get a prioritized plan
         </p>
-        <p className="font-suse text-lg md:text-xl italic mt-1" style={{ color: '#fe7c3f' }}>
+        <p className="font-suse text-lg md:text-xl 3xl:text-3xl 4xl:text-4xl italic mt-1 3xl:mt-3" style={{ color: '#fe7c3f' }}>
           in about 10 minutes
         </p>
       </div>
 
       {/* 3-Step Process */}
-      <div className="grid grid-cols-3 gap-6 w-full stagger-3">
+      <div className="grid grid-cols-3 gap-6 3xl:gap-12 4xl:gap-16 w-full stagger-3">
         {STEPS.map((s) => (
           <div
             key={s.step}
-            className="glass rounded-2xl p-6 text-center"
+            className="glass rounded-2xl p-6 3xl:p-12 4xl:p-16 text-center"
             style={{ border: `1px solid ${s.color}33` }}
           >
-            <s.icon className="w-8 h-8 mx-auto mb-3" style={{ color: s.color }} />
-            <div className="font-orbitron text-xs tracking-widest mb-1 opacity-50">STEP {s.step}</div>
-            <div className="font-orbitron font-bold text-xl mb-2" style={{ color: s.color }}>{s.title}</div>
-            <p className="font-suse text-sm opacity-70">{s.desc}</p>
+            <s.icon className="w-8 h-8 3xl:w-14 3xl:h-14 4xl:w-20 4xl:h-20 mx-auto mb-3 3xl:mb-6" style={{ color: s.color }} />
+            <div className="font-orbitron text-xs 3xl:text-lg 4xl:text-xl tracking-widest mb-1 3xl:mb-3 opacity-50">STEP {s.step}</div>
+            <div className="font-orbitron font-bold text-xl 3xl:text-3xl 4xl:text-4xl mb-2 3xl:mb-4" style={{ color: s.color }}>{s.title}</div>
+            <p className="font-suse text-sm 3xl:text-xl 4xl:text-2xl opacity-70">{s.desc}</p>
           </div>
         ))}
       </div>
 
       {/* SEAL Rating Scale */}
       <div className="w-full stagger-4">
-        <h3 className="font-orbitron text-sm tracking-widest text-center mb-4 opacity-50">
+        <h3 className="font-orbitron text-sm 3xl:text-xl 4xl:text-2xl tracking-widest text-center mb-4 3xl:mb-8 opacity-50">
           SOVEREIGNTY EFFECTIVENESS ASSURANCE LEVEL (SEAL) RATING
         </h3>
-        <div className="flex gap-1 w-full h-12 rounded-xl overflow-hidden">
+        <div className="flex gap-1 3xl:gap-2 w-full h-12 3xl:h-20 4xl:h-28 rounded-xl overflow-hidden">
           {SEAL_LEVELS.map((seal) => (
             <div
               key={seal.level}
@@ -96,10 +96,10 @@ export function SovereigntyAssessmentCTA({ gameUrl, slideIndicator }: Sovereignt
               } as React.CSSProperties}
             >
               <div className="text-center">
-                <div className="font-orbitron font-bold text-xs" style={{ color: seal.level <= 1 ? '#fff' : '#0c322c' }}>
+                <div className="font-orbitron font-bold text-xs 3xl:text-lg 4xl:text-xl" style={{ color: seal.level <= 1 ? '#fff' : '#0c322c' }}>
                   SEAL-{seal.level}
                 </div>
-                <div className="font-suse text-[10px] leading-tight" style={{ color: seal.level <= 1 ? 'rgba(255,255,255,0.8)' : 'rgba(12,50,44,0.7)' }}>
+                <div className="font-suse text-[10px] 3xl:text-sm 4xl:text-base leading-tight" style={{ color: seal.level <= 1 ? 'rgba(255,255,255,0.8)' : 'rgba(12,50,44,0.7)' }}>
                   {seal.label}
                 </div>
               </div>
@@ -110,50 +110,50 @@ export function SovereigntyAssessmentCTA({ gameUrl, slideIndicator }: Sovereignt
 
       {/* 8 Assessment Areas */}
       <div className="w-full stagger-5">
-        <h3 className="font-orbitron text-sm tracking-widest text-center mb-4 opacity-50">
+        <h3 className="font-orbitron text-sm 3xl:text-xl 4xl:text-2xl tracking-widest text-center mb-4 3xl:mb-8 opacity-50">
           8 SOVEREIGNTY OBJECTIVES ALIGNED WITH THE EU CLOUD SOVEREIGNTY FRAMEWORK
         </h3>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-4 gap-3 3xl:gap-6 4xl:gap-8">
           {ASSESSMENT_AREAS.map((area) => (
             <div
               key={area.id}
-              className="glass rounded-xl px-4 py-3 text-center"
+              className="glass rounded-xl px-4 py-3 3xl:px-8 3xl:py-6 4xl:px-12 4xl:py-10 text-center"
               style={{ border: '1px solid rgba(48,186,120,0.2)' }}
             >
-              <div className="font-orbitron text-[10px] tracking-wider opacity-40 mb-1">{area.id}</div>
-              <div className="font-orbitron font-bold text-sm" style={{ color: '#d6f0e5' }}>{area.label}</div>
-              <div className="font-suse text-xs mt-1" style={{ color: '#5fd4a0' }}>{area.pct}</div>
+              <div className="font-orbitron text-[10px] 3xl:text-sm 4xl:text-base tracking-wider opacity-40 mb-1 3xl:mb-2">{area.id}</div>
+              <div className="font-orbitron font-bold text-sm 3xl:text-xl 4xl:text-2xl" style={{ color: '#d6f0e5' }}>{area.label}</div>
+              <div className="font-suse text-xs 3xl:text-base 4xl:text-lg mt-1 3xl:mt-2" style={{ color: '#5fd4a0' }}>{area.pct}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Trust signals */}
-      <div className="flex justify-center gap-8 stagger-6">
-        <div className="flex items-center gap-2">
-          <Lock className="w-4 h-4" style={{ color: '#5fd4a0' }} />
-          <span className="font-suse text-sm" style={{ color: '#5fd4a0' }}>No signup required</span>
+      <div className="flex justify-center gap-8 3xl:gap-16 4xl:gap-20 stagger-6">
+        <div className="flex items-center gap-2 3xl:gap-3">
+          <Lock className="w-4 h-4 3xl:w-7 3xl:h-7 4xl:w-9 4xl:h-9" style={{ color: '#5fd4a0' }} />
+          <span className="font-suse text-sm 3xl:text-xl 4xl:text-2xl" style={{ color: '#5fd4a0' }}>No signup required</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Monitor className="w-4 h-4" style={{ color: '#5fd4a0' }} />
-          <span className="font-suse text-sm" style={{ color: '#5fd4a0' }}>Data stays in your browser</span>
+        <div className="flex items-center gap-2 3xl:gap-3">
+          <Monitor className="w-4 h-4 3xl:w-7 3xl:h-7 4xl:w-9 4xl:h-9" style={{ color: '#5fd4a0' }} />
+          <span className="font-suse text-sm 3xl:text-xl 4xl:text-2xl" style={{ color: '#5fd4a0' }}>Data stays in your browser</span>
         </div>
-        <div className="flex items-center gap-2">
-          <FileText className="w-4 h-4" style={{ color: '#5fd4a0' }} />
-          <span className="font-suse text-sm" style={{ color: '#5fd4a0' }}>Instant PDF report</span>
+        <div className="flex items-center gap-2 3xl:gap-3">
+          <FileText className="w-4 h-4 3xl:w-7 3xl:h-7 4xl:w-9 4xl:h-9" style={{ color: '#5fd4a0' }} />
+          <span className="font-suse text-sm 3xl:text-xl 4xl:text-2xl" style={{ color: '#5fd4a0' }}>Instant PDF report</span>
         </div>
       </div>
 
       {/* Bottom CTA */}
       <div className="stagger-7 text-center">
         <div
-          className="inline-block rounded-2xl px-10 py-4"
+          className="inline-block rounded-2xl px-10 py-4 3xl:px-16 3xl:py-8 4xl:px-24 4xl:py-10"
           style={{
             background: 'rgba(48,186,120,0.1)',
             border: '2px solid rgba(48,186,120,0.4)',
           }}
         >
-          <p className="font-orbitron font-bold text-lg" style={{ color: '#30ba78' }}>
+          <p className="font-orbitron font-bold text-lg 3xl:text-3xl 4xl:text-4xl" style={{ color: '#30ba78' }}>
             Play the quiz and request your assessment at the end!
           </p>
         </div>

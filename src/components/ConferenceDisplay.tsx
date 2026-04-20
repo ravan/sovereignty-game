@@ -3,6 +3,7 @@ import { DisplayMode } from './DisplayMode';
 import { SovereigntyAssessmentCTA } from './SovereigntyAssessmentCTA';
 import { DigitalResilienceCTA } from './DigitalResilienceCTA';
 import { GameSimulation } from './GameSimulation';
+import { useViewportTier } from '../hooks/useViewportTier';
 
 interface ConferenceDisplayProps {
   gameUrl: string;
@@ -23,6 +24,11 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
   const [progress, setProgress] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tier = useViewportTier();
+  const barActiveWidth = tier === 'xl4' ? 180 : tier === 'xl3' ? 140 : 80;
+  const barInactiveWidth = tier === 'xl4' ? 72 : tier === 'xl3' ? 56 : 32;
+  const barHeight = tier === 'xl4' ? 9 : tier === 'xl3' ? 7 : 4;
+  const labelFontSize = tier === 'xl4' ? '18px' : tier === 'xl3' ? '14px' : '8px';
 
   const goToPage = useCallback((nextIndex: number) => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -87,21 +93,21 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
 
   // Slide indicator widget — passed into the left panel
   const slideIndicator: ReactNode = (
-    <div className="flex gap-2 justify-center">
+    <div className="flex gap-2 3xl:gap-4 4xl:gap-5 justify-center">
       {PAGE_CONFIG.map((config, i) => (
         <button
           key={i}
           type="button"
           onClick={() => handleIndicatorClick(i)}
           aria-label={`Go to ${config.label}`}
-          className="flex flex-col items-center gap-1 bg-transparent border-0 p-0 cursor-pointer"
+          className="flex flex-col items-center gap-1 3xl:gap-2 4xl:gap-3 bg-transparent border-0 p-0 cursor-pointer"
           style={{ cursor: i === currentPage ? 'default' : 'pointer' }}
         >
           <div
             className="rounded-full overflow-hidden"
             style={{
-              width: i === currentPage ? '80px' : '32px',
-              height: '4px',
+              width: `${i === currentPage ? barActiveWidth : barInactiveWidth}px`,
+              height: `${barHeight}px`,
               background: 'rgba(255,255,255,0.1)',
               transition: 'width 0.3s ease',
             }}
@@ -122,7 +128,7 @@ export function ConferenceDisplay({ gameUrl }: ConferenceDisplayProps) {
           <span
             className="font-orbitron text-center"
             style={{
-              fontSize: '8px',
+              fontSize: labelFontSize,
               color: i === currentPage ? '#30ba78' : 'rgba(255,255,255,0.3)',
               transition: 'color 0.3s',
             }}

@@ -132,8 +132,8 @@ export function GameSimulation({ gameUrl, onComplete, slideIndicator }: GameSimu
       {/* Right panel — game simulation */}
       <div className="flex flex-col flex-1 overflow-hidden relative">
         {/* DEMO badge — inline so it doesn't overlap the question header */}
-        <div className="flex justify-end px-4 pt-2 pb-0 shrink-0">
-          <div className="demo-badge rounded-full px-4 py-1 font-orbitron text-xs tracking-widest">
+        <div className="flex justify-end px-4 pt-2 pb-0 3xl:px-8 3xl:pt-4 4xl:px-12 4xl:pt-6 shrink-0">
+          <div className="demo-badge rounded-full px-4 py-1 3xl:px-8 3xl:py-3 4xl:px-10 4xl:py-4 font-orbitron text-xs 3xl:text-xl 4xl:text-2xl tracking-widest">
             DEMO
           </div>
         </div>
@@ -146,14 +146,14 @@ export function GameSimulation({ gameUrl, onComplete, slideIndicator }: GameSimu
                 <div
                   key={countdownNum}
                   className="font-orbitron font-black countdown-num"
-                  style={{ fontSize: 'clamp(6rem, 20vw, 12rem)', color: '#30ba78' }}
+                  style={{ fontSize: 'clamp(6rem, 20vw, 18rem)', color: '#30ba78' }}
                 >
                   {countdownNum}
                 </div>
               ) : (
                 <div
                   className="font-orbitron font-black countdown-num"
-                  style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', color: '#fe7c3f' }}
+                  style={{ fontSize: 'clamp(3rem, 10vw, 10rem)', color: '#fe7c3f' }}
                 >
                   GO!
                 </div>
@@ -196,11 +196,11 @@ export function GameSimulation({ gameUrl, onComplete, slideIndicator }: GameSimu
 
         {/* Final screen (simplified) */}
         {phase === 'final' && (
-          <div className="flex flex-col items-center justify-center flex-1 px-6 py-8 gap-5 max-w-2xl mx-auto w-full screen-enter">
+          <div className="flex flex-col items-center justify-center flex-1 px-6 py-8 gap-5 3xl:gap-10 4xl:gap-14 max-w-2xl 3xl:max-w-5xl 4xl:max-w-7xl mx-auto w-full screen-enter">
             {/* Header */}
             <div className="text-center">
-              <p className="font-orbitron text-xs mb-1" style={{ color: '#ffffff' }}>Game Over</p>
-              <h1 className="font-orbitron font-black" style={{ fontSize: 'clamp(1.8rem, 6vw, 3.5rem)', color: '#30ba78' }}>
+              <p className="font-orbitron text-xs 3xl:text-lg 4xl:text-xl mb-1 3xl:mb-3" style={{ color: '#ffffff' }}>Game Over</p>
+              <h1 className="font-orbitron font-black" style={{ fontSize: 'clamp(1.8rem, 6vw, 6rem)', color: '#30ba78' }}>
                 Mission Complete
               </h1>
             </div>
@@ -209,49 +209,49 @@ export function GameSimulation({ gameUrl, onComplete, slideIndicator }: GameSimu
             <div className="text-center">
               <div
                 className="font-orbitron font-black"
-                style={{ fontSize: 'clamp(3rem, 12vw, 7rem)', color: rank.color, lineHeight: 1 }}
+                style={{ fontSize: 'clamp(3rem, 12vw, 11rem)', color: rank.color, lineHeight: 1 }}
               >
                 <ScoreTicker target={DEMO_RESULTS.score} />
               </div>
-              <div className="font-orbitron text-xs mt-1 opacity-50">POINTS</div>
+              <div className="font-orbitron text-xs 3xl:text-lg 4xl:text-xl mt-1 3xl:mt-3 opacity-50">POINTS</div>
             </div>
 
             {/* Rank badge */}
             <div
-              className="rank-glow rounded-2xl px-6 py-4 text-center"
+              className="rank-glow rounded-2xl px-6 py-4 3xl:px-12 3xl:py-8 4xl:px-16 4xl:py-10 text-center"
               style={{ border: `2px solid ${rank.color}`, color: rank.color }}
             >
-              <div className="font-orbitron font-bold text-xl md:text-2xl">{rank.label}</div>
+              <div className="font-orbitron font-bold text-xl md:text-2xl 3xl:text-5xl 4xl:text-6xl">{rank.label}</div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 w-full">
-              <div className="glass rounded-xl p-3 text-center neon-border-cyan">
-                <Target className="w-5 h-5 mx-auto mb-1" style={{ color: '#30ba78' }} />
-                <div className="font-orbitron font-bold text-lg neon-green">{correctCount}/{DEMO_TOTAL_QUESTIONS}</div>
-                <div className="text-xs opacity-50">CORRECT</div>
+            <div className="grid grid-cols-3 gap-3 3xl:gap-6 4xl:gap-10 w-full">
+              <div className="glass rounded-xl p-3 3xl:p-8 4xl:p-12 text-center neon-border-cyan">
+                <Target className="w-5 h-5 3xl:w-10 3xl:h-10 4xl:w-14 4xl:h-14 mx-auto mb-1 3xl:mb-4" style={{ color: '#30ba78' }} />
+                <div className="font-orbitron font-bold text-lg 3xl:text-4xl 4xl:text-5xl neon-green">{correctCount}/{DEMO_TOTAL_QUESTIONS}</div>
+                <div className="text-xs 3xl:text-base 4xl:text-lg opacity-50 mt-1 3xl:mt-2">CORRECT</div>
               </div>
-              <div className="glass rounded-xl p-3 text-center neon-border-purple">
-                <Zap className="w-5 h-5 mx-auto mb-1" style={{ color: '#ffffff' }} />
-                <div className="font-orbitron font-bold text-lg" style={{ color: '#ffffff' }}>{avgTime}s</div>
-                <div className="text-xs opacity-50">AVG TIME</div>
+              <div className="glass rounded-xl p-3 3xl:p-8 4xl:p-12 text-center neon-border-purple">
+                <Zap className="w-5 h-5 3xl:w-10 3xl:h-10 4xl:w-14 4xl:h-14 mx-auto mb-1 3xl:mb-4" style={{ color: '#ffffff' }} />
+                <div className="font-orbitron font-bold text-lg 3xl:text-4xl 4xl:text-5xl" style={{ color: '#ffffff' }}>{avgTime}s</div>
+                <div className="text-xs 3xl:text-base 4xl:text-lg opacity-50 mt-1 3xl:mt-2">AVG TIME</div>
               </div>
-              <div className="glass rounded-xl p-3 text-center" style={{ border: '1px solid rgba(189,51,20,0.3)' }}>
-                <Flame className="w-5 h-5 mx-auto mb-1" style={{ color: '#bd3314' }} />
-                <div className="font-orbitron font-bold text-lg" style={{ color: '#bd3314' }}>{DEMO_RESULTS.maxStreak}</div>
-                <div className="text-xs opacity-50">BEST STREAK</div>
+              <div className="glass rounded-xl p-3 3xl:p-8 4xl:p-12 text-center" style={{ border: '1px solid rgba(189,51,20,0.3)' }}>
+                <Flame className="w-5 h-5 3xl:w-10 3xl:h-10 4xl:w-14 4xl:h-14 mx-auto mb-1 3xl:mb-4" style={{ color: '#bd3314' }} />
+                <div className="font-orbitron font-bold text-lg 3xl:text-4xl 4xl:text-5xl" style={{ color: '#bd3314' }}>{DEMO_RESULTS.maxStreak}</div>
+                <div className="text-xs 3xl:text-base 4xl:text-lg opacity-50 mt-1 3xl:mt-2">BEST STREAK</div>
               </div>
             </div>
 
             {/* CTA reminder */}
             <div
-              className="rounded-xl px-6 py-3 text-center"
+              className="rounded-xl px-6 py-3 3xl:px-12 3xl:py-6 4xl:px-16 4xl:py-8 text-center"
               style={{
                 background: 'rgba(48,186,120,0.1)',
                 border: '1px solid rgba(48,186,120,0.3)',
               }}
             >
-              <p className="font-orbitron text-sm" style={{ color: '#30ba78' }}>
+              <p className="font-orbitron text-sm 3xl:text-2xl 4xl:text-3xl" style={{ color: '#30ba78' }}>
                 Scan the QR code to play and test your sovereignty knowledge!
               </p>
             </div>
