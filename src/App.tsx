@@ -7,6 +7,7 @@ import { FinalScreen } from './components/FinalScreen';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { DisplayMode } from './components/DisplayMode';
 import { ConferenceDisplay } from './components/ConferenceDisplay';
+import { JumpPage } from './components/JumpPage';
 import { useGame } from './hooks/useGame';
 import { useMarketo } from './hooks/useMarketo';
 
@@ -26,6 +27,10 @@ function isConferenceMode(): boolean {
 function isDisplayMode(): boolean {
   const params = new URLSearchParams(window.location.search);
   return params.has('display') || isDashboard();
+}
+
+function isJumpPage(): boolean {
+  return window.location.pathname.replace(/\/+$/, '').endsWith('/jump');
 }
 
 export default function App() {
@@ -75,6 +80,14 @@ export default function App() {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [state.phase, submitAnswer]);
+
+  if (isJumpPage()) {
+    return (
+      <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
+        <JumpPage />
+      </div>
+    );
+  }
 
   if (isConferenceMode()) {
     return (
