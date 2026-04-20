@@ -92,7 +92,7 @@ export default function App() {
   if (isConferenceMode()) {
     return (
       <div className="relative bg-grid scanline" style={{ minHeight: '100vh' }}>
-        <ConferenceDisplay gameUrl={getGameUrl()} />
+        <ConferenceDisplay gameUrl="https://sovereigntyquiz.com/" />
       </div>
     );
   }
